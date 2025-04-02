@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 	const headLink = document.getElementById("toIndexLink");
-	headLink.addEventListener('click',function(event){
+	headLink.addEventListener('click',function(){
 		window.location.href = "/mini2/index.jsp";
 	});
 	
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const viewLinks = document.querySelectorAll(".viewSelector");
 	
 	viewLinks.forEach(function(viewLink){
-	    viewLink.addEventListener('click', function(event) {
+	    viewLink.addEventListener('click', function() {
 			const idx = this.id.replace("viewLink",'');
 		    const viewForm = document.getElementById('viewForm'+idx);
 	        viewForm.submit();
