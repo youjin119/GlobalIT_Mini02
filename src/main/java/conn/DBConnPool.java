@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -20,7 +19,7 @@ public class DBConnPool {
 			Context initCtx = new InitialContext();
 			Context ctx = (Context)initCtx.lookup("java:comp/env");
 			DataSource source = (DataSource)ctx.lookup("jdbc/myoracle");
-			// 커넥션 풀을 통해 연결 얻기.
+			// 커넥션 풀을 통해 연결 얻기
 			con = source.getConnection();
 					
 			System.out.println("DB 커넥션 풀 연결 성공");

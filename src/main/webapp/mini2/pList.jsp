@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+>>>>>>> 478761196e1921b37ac8e06f326a3fd59a67de92
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>test</title>
 <style>
 	body{margin:0; padding:0; text-align:center;}
@@ -108,5 +112,11 @@
 	</div>
 
 	<script src="../mini2/js/pList.js"></script>
+=======
+<title>Insert title here</title>
+</head>
+<body>
+
+>>>>>>> 478761196e1921b37ac8e06f326a3fd59a67de92
 </body>
 </html>
