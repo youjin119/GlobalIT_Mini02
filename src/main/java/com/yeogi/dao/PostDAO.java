@@ -35,6 +35,7 @@ public class PostDAO extends DBConnPool{
 
         return totalCount;
     }
+    // 페이징 - 선택된 페이지의 게시물 출력
     public List<PostDTO> selectListPage(Map<String,Object> map) {
         List<PostDTO> board = new ArrayList<PostDTO>();
         String query = " "
@@ -74,6 +75,7 @@ public class PostDAO extends DBConnPool{
                 dto.setTag(rs.getString(3));
                 dto.setContent(rs.getString(5));
                 dto.setPostdate(rs.getDate(6));
+                dto.setVcount(rs.getInt(8));
 //                dto.setOfile(rs.getString(6));
 //                dto.setSfile(rs.getString(7));
 //                dto.setDowncount(rs.getInt(8));
@@ -89,5 +91,17 @@ public class PostDAO extends DBConnPool{
         }
         return board; // list 리턴
     }
-	
+	// 조회수 증가
+    public void updateVcount(String idx) {
+    	String query = " update post set vcount = vcount+1 where postid=? ";
+    	try {
+    		psmt = con.prepareStatement(query);
+    		psmt.setString(1, idx);
+    		psmt.executeQuery();
+    	}catch (Exception e) {
+    		System.out.println("게시물 조회수 증가 중 오류");
+    		e.printStackTrace();
+    	}
+    }
+    
 }

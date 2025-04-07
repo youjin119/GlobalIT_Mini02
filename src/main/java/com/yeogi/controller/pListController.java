@@ -110,7 +110,7 @@ public class pListController extends HttpServlet {
 	        req.setAttribute("boardLists", boardLists);
 	        req.setAttribute("panelLists", panelLists);
 	        req.setAttribute("map", map);
-	        req.getRequestDispatcher("/mini2/pList.jsp").forward(req, resp);
+	        req.getRequestDispatcher("mini2/pList.jsp").forward(req, resp);
 	}
 
 	/**

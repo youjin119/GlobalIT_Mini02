@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yeogi.dao.PostDAO;
+
 /**
  * Servlet implementation class pViewController
  */
@@ -29,8 +31,11 @@ public class pViewController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String postID = request.getParameter("postID");
+		PostDAO dao = new PostDAO();
+		dao.updateVcount(postID); //조회수 증가
+		dao.close();
 		request.setAttribute("postID", postID);
-		request.getRequestDispatcher("/mini2/pView.jsp").forward(request, response);
+		request.getRequestDispatcher("mini2/pView.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,7 +43,6 @@ public class pViewController extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
