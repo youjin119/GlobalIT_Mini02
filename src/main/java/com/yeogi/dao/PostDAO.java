@@ -1,6 +1,8 @@
 package com.yeogi.dao;
 
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,19 +60,19 @@ public class PostDAO extends DBConnPool{
             while (rs.next()) {
             	// Model 객체에 게시글 데이터 저장
             	PostDTO dto = new PostDTO();
-
-//                dto.setPostId(rs.getString(1));
-//                dto.setTitle(rs.getString(2));
-//                dto.setTag(rs.getString(3));
-//                dto.setCountry(rs.getString(4));
-//                dto.setContent(rs.getString(5));
-//                dto.setPostdate(rs.getDate(6));
+            	
+            	PreparedStatement subPsmt=con.prepareStatement(" select imgid from img where postid = ? and img_index=1 ");
+            	subPsmt.setInt(1, rs.getInt("postid"));
+            	ResultSet subrs = subPsmt.executeQuery();
+            	while (subrs.next())
+            		dto.setContent(subrs.getString("imgid"));
+            	
+            	
             	dto.setPostID(rs.getInt("postID"));  // ✅ postID 설정
                 dto.setId(rs.getString("id"));
                 dto.setTitle(rs.getString("title"));
                 dto.setTag(rs.getString("tag"));
                 dto.setCountry(rs.getString("country"));
-                dto.setContent(rs.getString("content"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dto.setPostDate(sdf.format(rs.getDate("postDate")));
                 dto.setVcount(rs.getInt(8));
