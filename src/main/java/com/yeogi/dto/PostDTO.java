@@ -1,19 +1,26 @@
 package com.yeogi.dto;
 
 public class PostDTO {
-	private String idx; 
-    private String title;
-    private String tag;
-    private String country;    
-    private String content;
-    private java.sql.Date postdate;
-    private String id;
-    private int vcount;
-	public String getIdx() {
-		return idx;
+	private int postID;
+	private String title;
+	private String tag;
+	private String country;
+	private String content;
+	private String postDate;
+	private String id;
+	private int vcount;
+	private String name;
+	public String getName() {
+		return name;
 	}
-	public void setIdx(String idx) {
-		this.idx = idx;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPostID() {
+		return postID;
+	}
+	public void setPostID(int postID) {
+		this.postID = postID;
 	}
 	public String getTitle() {
 		return title;
@@ -39,11 +46,11 @@ public class PostDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public java.sql.Date getPostdate() {
-		return postdate;
+	public String getPostDate() {
+		return postDate;
 	}
-	public void setPostdate(java.sql.Date postdate) {
-		this.postdate = postdate;
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
 	}
 	public String getId() {
 		return id;
@@ -56,13 +63,5 @@ public class PostDTO {
 	}
 	public void setVcount(int vcount) {
 		this.vcount = vcount;
-	}
-    
-    
-    
-	
-    
-    
-    
-    
+	} 
 }

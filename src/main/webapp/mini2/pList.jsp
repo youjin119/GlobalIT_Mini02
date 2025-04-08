@@ -79,51 +79,50 @@
 </head>
 <body>
  <h1 id="toIndexLink">기사 목록 띄우기</h1>
- 
- <form method="post" action="/pList.do">
  	<div class="tagsContainer">
 		<div class="tagSelector tagSelected cursorSetPointer">#전체</div>
-		<div class="tagSelector cursorSetPointer">#유럽</div>
+		<div class="tagSelector cursorSetPointer">#여행</div>
 		<div class="tagSelector cursorSetPointer">#아시아</div>
 		<div class="tagSelector cursorSetPointer">#아프리카</div>
 		<div class="tagSelector cursorSetPointer">#아메리카</div> 	
 		<div class="tagSelector cursorSetPointer">#오세아니아</div> 	
  	</div>
- </form>
  <br>
  <form method="post" action="/pList.do">
  	<!-- <button type="submit" id="plusButton" name="click" value="insert">insert</button> -->
  	<button type="submit" id="updateButton" name="click" value="update">새로고침</button>
  	<button type="reset" id="delButton" name="click" value="delete">test</button>
  </form>
- <c:choose>
- <c:when test="${ empty boardLists }">
- 	등록된 게시물이 없습니다^^*
- </c:when>
  
- <c:otherwise>
-	 <c:forEach items="${boardLists }" var="post">
-	    <div class="bordertest">
-	    	<form method="get" action="/pView.do" id="viewForm${post.idx}">
-		        <img src="../mini2/imgs/default.png" alt="로드실패" class="mainImgs">
-		        <div>
-		            <h2 id="viewLink${post.idx}" class="viewSelector">${post.title}</h2>
-		            <p>${post.country}</p>
-		            <p>${post.tag}</p>
-		            <p>기사내용 : ${post.content}<br>
-		            	글 번호 : ${post.idx} &nbsp; 조회수 : ${post.vcount }</p>
-		        </div>
-		        <input type="hidden" name="postID" value="${post.idx}">
-	    	</form>
-	    </div>  
-	 </c:forEach>
- </c:otherwise>
- 
- </c:choose>
+ <div class="boardListsContainer">
+	 <c:choose>
+		 <c:when test="${ empty boardLists }">
+		 	등록된 게시물이 없습니다^^*
+		 </c:when>
+		 
+		 <c:otherwise>
+			 <c:forEach items="${boardLists }" var="post">
+			    <div class="bordertest">
+			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
+				        <img src="../mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+				        <div>
+				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
+				            <p>${post.country}</p>
+				            <p>${post.tag}</p>
+				            <p>
+				            	글 번호 : ${post.postID} &nbsp; 조회수 : ${post.vcount }</p>
+				        </div>
+				        <input type="hidden" name="postID" value="${post.postID}">
+			    	</form>
+			    </div>  
+			 </c:forEach>
+		 </c:otherwise>
+	 </c:choose>
 	<div>
 		페이징 처리<br>
 		${ map.pagingImg }
 	</div>
+ </div> <!-- 리스트 불러옴 -->
 	
 	<div id="absolutePanel">
 		테스트
@@ -135,6 +134,6 @@
 		</c:forEach>
 	</div>
 
-	<script src="../mini2/js/pList.js"></script>
+	<script src="../mini2/js/pList.js?v=1.2"></script>
 </body>
 </html>

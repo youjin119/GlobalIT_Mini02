@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h1>기본 페이지</h1><br>
-	<a>로그인</a><br>
+	<a href="/login.do">로그인</a>
+	<br>
 	<a href="/pList.do">list 보기</a>
 </body>
 </html>
