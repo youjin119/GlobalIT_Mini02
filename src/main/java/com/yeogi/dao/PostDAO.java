@@ -153,7 +153,7 @@ public class PostDAO extends DBConnPool{
     		e.printStackTrace();
     	}
     }
-    
+    //태그 클릭 시 불러올 게시물 선택
     public List<PostDTO> selectTagPage (Map<String, Object> map) {
         List<PostDTO> board = null;
         
@@ -186,11 +186,16 @@ public class PostDAO extends DBConnPool{
                 // Model 객체에 게시글 데이터 저장
             	PostDTO dto = new PostDTO();
 
+            	PreparedStatement subPsmt=con.prepareStatement(" select imgid from img where postid = ? and img_index=1 ");
+            	subPsmt.setInt(1, rs.getInt("postid"));
+            	ResultSet subrs = subPsmt.executeQuery();
+            	while (subrs.next())
+            		dto.setContent(subrs.getString("imgid"));
+            	
                 dto.setPostID(rs.getInt(1));
                 dto.setTitle(rs.getString(2));
                 dto.setTag(rs.getString(3));
                 dto.setCountry(rs.getString(4));
-                dto.setContent(rs.getString(5));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dto.setPostDate(sdf.format(rs.getDate("postDate")));
                 dto.setId(rs.getString("id"));

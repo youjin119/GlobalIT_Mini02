@@ -115,7 +115,14 @@
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
-					    <img src="/uploads/${post.content }" alt="로드실패" class="mainImgs">
+						<c:choose>
+						    <c:when test="${post.content == null}">
+						        <img src="mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						    </c:when>
+						    <c:otherwise>
+						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
+						    </c:otherwise>
+						</c:choose>
 				        <div>
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
