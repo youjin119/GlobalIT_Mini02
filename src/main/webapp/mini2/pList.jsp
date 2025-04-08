@@ -8,19 +8,30 @@
 <title>work</title>
 <style>
 	body{margin:0; padding:0; text-align:center;}
+	
     .bordertest{
+        display: flex;
+        flex-direction: row;
         border: 1px solid darkblue;
-        clear: both;
-        margin-left: 20vh;
-        margin-right: 20vh;
-        max-width: 800px;
+        /* margin-left: 20vh;
+        margin-right: 20vh; */
+        margin: 40px 20vh;
     }
+	.bordertest > form { /* 수정: form 태그에 스타일 적용 */
+	    display: flex;
+	    flex-direction: row; /* 추가: 가로 방향으로 정렬 */
+	}
+	
+	.bordertest > form > div { /* 수정: form 태그 내부의 div 태그에 스타일 적용 */
+	    display: flex;
+	    flex-direction: column;
+	}
     .mainImgs{
-    	float: left;
     	width: 150px;
         height: 150px;
         line-height: 150px;
         border: 1px solid black;
+        margin-right: 10vh;
     }
 		#absolutePanel{
 			position: fixed;
@@ -104,8 +115,15 @@
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
+						<c:choose>
+						    <c:when test="${post.content == null}">
+						        <img src="mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						    </c:when>
+						    <c:otherwise>
+						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
+						    </c:otherwise>
+						</c:choose>
 				        <div>
-					        <img src="/uploads/${post.content }" alt="로드실패" class="mainImgs">
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
 				            <p>${post.tag}</p>
