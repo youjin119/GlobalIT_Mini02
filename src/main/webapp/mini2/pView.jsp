@@ -15,6 +15,7 @@
     .tag { color: #555; }
     .content { text-align: center; margin-top: 30px; line-height: 1.6em; }
     .writer { margin-top: 50px; text-align: left; font-style: italic; }
+    img{display: block;}
 </style>
 </head>
 <body>

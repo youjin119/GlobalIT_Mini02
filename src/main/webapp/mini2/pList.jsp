@@ -104,13 +104,11 @@
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
-				        <img src="../mini2/imgs/default.png" alt="로드실패" class="mainImgs">
 				        <div>
+					        <img src="/uploads/${post.content }" alt="로드실패" class="mainImgs">
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
 				            <p>${post.tag}</p>
-				            <p>
-				            	글 번호 : ${post.postID} &nbsp; 조회수 : ${post.vcount }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
 			    	</form>
