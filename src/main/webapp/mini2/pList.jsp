@@ -37,7 +37,7 @@
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
 						<c:choose>
 						    <c:when test="${post.content == null}">
-						        <img src="mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						        <img src="/mini2/imgs/default.png" alt="로드실패" class="mainImgs">
 						    </c:when>
 						    <c:otherwise>
 						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
@@ -64,7 +64,15 @@
 		테스트
 	 	<c:forEach items="${panelLists }" var="best">
 			<div class="aP">
-				<img src="#" alt="사진 추가 예정" class="panelImg"><br>
+				<c:choose>
+				    <c:when test="${best.content == null}">
+				        <img src="/mini2/imgs/default.png" alt="로드실패" class="panelImg">
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/uploads/${best.content}" alt="로드실패" class="panelImg">
+				    </c:otherwise>
+				</c:choose>
+				<br>
 				${best.title}<br>
 			</div>
 		</c:forEach>

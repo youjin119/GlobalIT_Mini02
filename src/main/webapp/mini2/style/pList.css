@@ -24,7 +24,6 @@ body{margin:0; padding:0; text-align:center;}
        height: 150px;
        line-height: 150px;
        border: 1px solid black;
-       
        margin-right: 10vh;
    }
 	#absolutePanel{
@@ -37,7 +36,7 @@ body{margin:0; padding:0; text-align:center;}
 		opacity: 70%;
 	}
 	.panelImg{
-	    width: 100px;
+	    width: 150px;
       		height: 100px;
       		line-height: 100px;
       		border: 1px dashed white;
