@@ -22,10 +22,12 @@
 
 </head>
 <body>
+ <!-- background 이미지 -->
+   <div class="bg-blur"></div>
  
   <form  id="login_register_form" action="/login.do" method="post">
-    <img src="/eats.png">
-    <p>* 이메일 로그인</p>
+    <img src="/mini2/imgs/logo.png">
+    <p class="loginTitle">* 이메일 로그인</p>
 
     <div class="input-container">
       <i class="fa fa-envelope icon"></i>
@@ -42,14 +44,14 @@
 
     <!-- ID/ 비밀번호 찾기 모달------------------------------------------------------------------------------------------------>   
 	<!-- 모달 버튼 -->
-	<p style="cursor:pointer; color:blue;" data-toggle="modal" data-target="#findModal">아이디 비밀번호 찾기 ></p>
+	<p class="findIdBtn" data-toggle="modal" data-target="#findModal">아이디∙비밀번호 찾기 ></p>
 	
 	<!-- Modal -->
 	<div class="modal fade" id="findModal" tabindex="-1" role="dialog" aria-labelledby="findModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content p-3">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="findModalLabel">아이디 / 비밀번호 찾기</h5>
+	        <h5 class="modal-title" id="findModalLabel">아이디∙비밀번호 찾기</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
 	      </div>
 	      <div class="modal-body">
@@ -74,6 +76,7 @@
 	          <small class="text-muted" id="resetMsg"></small>
 	          <button  type="button" class="btn btn-success mt-2" onclick="resetPassword()">비밀번호 재설정</button>
 	        </div>
+	        <a  href="/login.do" class=" loginDisplay text-right d-block"> 로그인 화면 >></a>
 	      </div>
 	    </div>
 	  </div>

@@ -21,9 +21,12 @@
  
 </head>
 <body>
+ <!-- background 이미지 -->
+   <div class="bg-blur"></div>
+   
   <form id="memberEdit" action="memberEdit.do" method="post" name="frm" >
     <div class="container editCont">
-      <h2> 화원 정보 수정</h2>
+      <h2> 회원 정보 수정</h2>
       <div class="container memberEdit">
         <p> 이름 :</p>
         <input class="input-field" type="text" placeholder="이름" id="name"  name="name" value="${mVo.name}"> 
