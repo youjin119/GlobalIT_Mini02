@@ -4,78 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>work</title>
-<style>
-	body{margin:0; padding:0; text-align:center;}
-    .bordertest{
-        border: 1px solid darkblue;
-        clear: both;
-        margin-left: 20vh;
-        margin-right: 20vh;
-        max-width: 800px;
-    }
-    .mainImgs{
-    	float: left;
-    	width: 150px;
-        height: 150px;
-        line-height: 150px;
-        border: 1px solid black;
-    }
-		#absolutePanel{
-			position: fixed;
-			right: 20px;
-			bottom: 10vh;
-			width: 200px;
-			height: 500px;
-			background-color: skyblue;
-			opacity: 70%;
-		}
-		.panelImg{
-		    width: 100px;
-       		height: 100px;
-       		line-height: 100px;
-       		border: 1px dashed white;
-		}
-		.viewSelector{
-			cursor: pointer;
-		}
-		p{
-			pointer-events: none;
-		}
-		.tagsContainer{
-			display: flex;
-			justify-content: center;
-		}
-		.tagSelector{
-			margin : 5px;
-			padding-left: 10px;
-			padding-right: 10px;
-			background-color: #f2f2f2;
-			border-radius: 30px;
-		}
-		.tagSelected{
-			background-color: pink;
-		}
-		.cursorSetPointer{
-			cursor: pointer;
-		}
+	<meta charset="UTF-8">
+	<title>work</title>
+	<link rel="stylesheet" href="/mini2/style/pList.css">
 
-    /* 스마트폰 모드 (최대 너비 576px) */
-    @media (max-width: 576px) {
-    /* 스마트폰 모드에 적용할 CSS 스타일 */
-        .bordertest{margin: 0;}
-        .mainImgs{border-color: yellow;}
-    }
-
-    /* 태블릿 및 스마트폰 모드 (최대 너비 768px) */
-    @media (max-width: 768px) {
-    /* 태블릿 및 스마트폰 모드에 적용할 CSS 스타일 */
-        .bordertest{margin: 0;}
-        .mainImgs{border-color: red;}
-    }
-    
-</style>
 </head>
 <body>
  <h1 id="toIndexLink">기사 목록 띄우기</h1>
@@ -104,8 +36,15 @@
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
+						<c:choose>
+						    <c:when test="${post.content == null}">
+						        <img src="/mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						    </c:when>
+						    <c:otherwise>
+						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
+						    </c:otherwise>
+						</c:choose>
 				        <div>
-					        <img src="/uploads/${post.content }" alt="로드실패" class="mainImgs">
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
 				            <p>${post.tag}</p>
@@ -126,7 +65,15 @@
 		테스트
 	 	<c:forEach items="${panelLists }" var="best">
 			<div class="aP">
-				<img src="#" alt="사진 추가 예정" class="panelImg"><br>
+				<c:choose>
+				    <c:when test="${best.content == null}">
+				        <img src="/mini2/imgs/default.png" alt="로드실패" class="panelImg">
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/uploads/${best.content}" alt="로드실패" class="panelImg">
+				    </c:otherwise>
+				</c:choose>
+				<br>
 				${best.title}<br>
 			</div>
 		</c:forEach>

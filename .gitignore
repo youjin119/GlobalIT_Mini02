@@ -1,0 +1,16 @@
+# 빌드 결과물 제외
+/target/
+/build/
+*.class
+
+# 로그 파일 제외
+*.log
+
+# 개인 설정 파일 제외
+.idea/
+.vscode/
+*.swp
+
+# OS 관련 파일 제외
+.DS_Store
+Thumbs.db
