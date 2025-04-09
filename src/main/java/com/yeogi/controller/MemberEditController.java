@@ -59,14 +59,14 @@ public class MemberEditController extends HttpServlet {
 		mVo.setPw(pw);
 		mVo.setPhonenum(phonenum);
 		
-		DBConnPool db = new DBConnPool();  // Tạo đối tượng DBConnPool
+		DBConnPool db = new DBConnPool();  // DBConnPool 객체 만들기
 		MemberDAO mDao = MemberDAO.getInstance();
 	   
 	    
 	    try {
 	    	mDao.updateMember(mVo);
 	    } finally {
-	        db.close();  // Đóng kết nối sau khi hoàn thành
+	        db.close();  // 실행 후 connect 닫기
 	    }	
 		
 		response.sendRedirect("login.do");

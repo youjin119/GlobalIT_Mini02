@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import com.yeogi.dto.MemberDTO;
 import conn.DBConnPool; // Kế thừa từ DBConnPool
 
-public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
+public class MemberDAO extends DBConnPool { 
     private static MemberDAO instance = new MemberDAO();
 
     private MemberDAO() {}
@@ -26,9 +26,9 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
             
             if (rs.next()) {
                 if (rs.getString("pw").equals(pw)) {
-                    result = 1; // ID & Mật khẩu đúng
+                    result = 1; // ID & 비밀번호 전확함
                 } else {
-                    result = 0; // Sai mật khẩu
+                    result = 0; // 비밀번호 틀림
                 }
             }
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
     }
        
 
-    // 회원가입 (Thêm thành viên mới)
+    // 회원가입 
     public int insertMember(MemberDTO mVo) {
         int result = -1;
         String sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)";
@@ -100,7 +100,7 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
         return result;
     }
 
-    // 회원 정보 조회 (Lấy thông tin user)
+    // 회원 정보 조회 
     public MemberDTO getMember(String id) {
         MemberDTO mVo = null;
         String sql = "SELECT * FROM member WHERE id=?";
@@ -132,7 +132,7 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
         return mVo;
     }
 
-    // 회원 정보 수정 (Cập nhật thông tin user)
+    // 회원 정보 수정 
     public int updateMember(MemberDTO mVo) {
         int result = -1;
         String sql = "UPDATE member SET name=?, pw=?, phonenum=? WHERE id=?";
@@ -184,7 +184,7 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
         return foundId;
     }
     
-    //pass
+    // ID와 전화번호 알면 새빌밀번호 재설정 가능
     public boolean resetPassword(String id, String phonenum, String newPw) {
         boolean success = false;
         String sql = "UPDATE member SET pw = ? WHERE id = ? AND phonenum = ?";
@@ -198,7 +198,7 @@ public class MemberDAO extends DBConnPool { // Kế thừa DBConnPool
             int result = psmt.executeUpdate();
             success = result > 0;
         } catch (Exception e) {
-            e.printStackTrace();  // Xử lý lỗi nếu có
+            e.printStackTrace();  //에러가 있으면 처리
         } finally {
             try {
                 if (psmt != null) psmt.close(); 

@@ -17,7 +17,7 @@
  <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
 
  <!-- stylesheet -->
-  <link href="${pageContext.request.contextPath}/style/member.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/mini2/style/member.css" rel="stylesheet">
  
 </head>
 <body>
@@ -71,7 +71,5 @@
    <!-- javaScript main -->
  <script type="text/javascript" src="/mini2/js/member.js"></script>
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 </body>
 </html>

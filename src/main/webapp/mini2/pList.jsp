@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>work</title>
 	<link rel="stylesheet" href="/mini2/style/pList.css">
+
 </head>
 <body>
  <h1 id="toIndexLink">기사 목록 띄우기</h1>

@@ -54,7 +54,7 @@ function joinCheck() {
   var form = document.frm;
   var isValid = true;
 
-  // Xóa thông báo lỗi cũ
+  // 기본 에러 메시지 삭제
   document.querySelectorAll(".error-message").forEach(el => el.textContent = "");
 
   var emailInputElement = form.idName;
@@ -66,7 +66,7 @@ function joinCheck() {
   var name = form.name.value.trim();
   var phone = form.phonenum.value.trim();
 
-  // Kiểm tra email
+  // 이메일 조건 체크
   if (!emailInputElement.readOnly) {
       var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!email) {
@@ -79,20 +79,20 @@ function joinCheck() {
   }
   
   
-  // Kiểm tra mật khẩu
+  // 비밀번호 조건 체크 
    if (password.length < 4 || password.length > 20) {
        showError("error-password", "비밀번호는 4~20자 사이로 입력해주세요.");
        isValid = false;
    }
   
   
-  // Kiểm tra xác nhận mật khẩu
+  // 비밀번호 다시 확인
   if (password !== passwordConfirm) {
       showError("error-passwordConfirm", "비밀번호 확인이 일치하지 않습니다.");
       isValid = false;
   }
 
-  // Kiểm tra tên
+  //이름 조건
   if (!name) {
       showError("error-name", "이름을 입력해주세요.");
       isValid = false;
@@ -101,7 +101,7 @@ function joinCheck() {
       isValid = false;
   }
 
-  // Kiểm tra số điện thoại
+  // 전화번호 정보 조건
   var phoneRegex = /^010-\d{3,4}-\d{4}$/;
   if (!phoneRegex.test(phone)) {
       showError("error-tel", "휴대폰 번호는 '010-XXXX-XXXX' 형식으로 입력해주세요.");
@@ -116,16 +116,14 @@ function showError(errorId, message) {
   var errorSpan = document.getElementById(errorId);
   if (errorSpan) {
       errorSpan.textContent = message;
-      errorSpan.style.color = "red"; // Hiển thị lỗi màu đỏ
+      errorSpan.style.color = "red"; // 빨깐 색으로 표시
   }
 }
 
 //---------------ID, 비밀번호 찾기--------------------------------//
 //----------------------------------------------------------//
-//---------------ID, 비밀번호 찾기--------------------------------//
-//----------------------------------------------------------//
 
-//ID
+//ID 찾기
   function findId() {
 	  console.log("findId() called!");
     const phone = $('#findPhone').val().trim();
@@ -153,7 +151,7 @@ function showError(errorId, message) {
     });
   }
   
-//pass
+// 새비밀번호 설정
   function resetPassword() {
     const id = $("#resetId").val();
     const phone = $("#resetPhone").val();

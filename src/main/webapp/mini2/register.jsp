@@ -18,10 +18,6 @@
 
  <!-- stylesheet -->
   <link href="${pageContext.request.contextPath}/mini2/style/member.css" rel="stylesheet">
-  
-
-
-
 
 </head>
 <body>
