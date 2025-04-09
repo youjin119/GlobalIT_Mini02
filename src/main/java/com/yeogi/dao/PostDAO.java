@@ -113,7 +113,7 @@ public class PostDAO extends DBConnPool{
         } 
         return generatedPostID;
     }
- // 주어진 일련번호에 해당하는 게시물을 DTO에 담아 반환합니다.
+    // 주어진 일련번호에 해당하는 게시물을 DTO에 담아 반환합니다.
     public PostDTO selectView(int postID) {
         PostDTO pdto = new PostDTO(); // DTO 객체 생성
         String query = "SELECT p.*, m.name FROM post p JOIN member m ON p.id = m.id WHERE p.postID=?";
@@ -127,10 +127,12 @@ public class PostDAO extends DBConnPool{
                 pdto.setTitle(rs.getString("title"));
                 pdto.setCountry(rs.getString("country"));
                 pdto.setContent(rs.getString("content"));
+                pdto.setTag(rs.getString("tag"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 pdto.setPostDate(sdf.format(rs.getDate("postDate")));
                 pdto.setName(rs.getString("name"));  // ← 회원 테이블에서 가져온 이름
                 pdto.setVcount(rs.getInt("vcount"));
+                pdto.setId(rs.getString("id"));
             }
         } catch (Exception e) {
             System.out.println("게시물 상세보기 중 예외 발생");

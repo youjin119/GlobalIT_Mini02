@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yeogi.dao.PostDAO;
 import com.yeogi.dto.PostDTO;
@@ -47,7 +48,12 @@ public class pViewController extends HttpServlet {
 		// 줄바꿈 처리
 		pdto.setContent(pdto.getContent().replaceAll("\r\n", "<br/>"));
 
-
+		
+		// 💡 세션에서 loginUser 가져와서 JSP에 넘기기
+		HttpSession session = request.getSession();
+		Object loginUser = session.getAttribute("loginUser");
+		request.setAttribute("loginUser", loginUser);
+		
 		// 게시물(dto) 저장 후 뷰로 포워드
 		request.setAttribute("pdto", pdto);
 		request.getRequestDispatcher("mini2/pView.jsp").forward(request, response);
