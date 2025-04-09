@@ -127,7 +127,8 @@ img{ width: 300px;
   display: none;
 }
 
-.error-message
+.error-message {
+  display: block; }
 
 /* 회원 정보 수정 페이지-------------------------------- */
 /* ---------------------------------------------- */
