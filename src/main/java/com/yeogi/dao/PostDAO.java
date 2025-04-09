@@ -186,11 +186,16 @@ public class PostDAO extends DBConnPool{
                 // Model 객체에 게시글 데이터 저장
             	PostDTO dto = new PostDTO();
 
+            	PreparedStatement subPsmt=con.prepareStatement(" select imgid from img where postid = ? and img_index=1 ");
+            	subPsmt.setInt(1, rs.getInt("postid"));
+            	ResultSet subrs = subPsmt.executeQuery();
+            	while (subrs.next())
+            		dto.setContent(subrs.getString("imgid"));
+            	
                 dto.setPostID(rs.getInt(1));
                 dto.setTitle(rs.getString(2));
                 dto.setTag(rs.getString(3));
                 dto.setCountry(rs.getString(4));
-                dto.setContent(rs.getString(5));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dto.setPostDate(sdf.format(rs.getDate("postDate")));
                 dto.setId(rs.getString("id"));
@@ -204,7 +209,28 @@ public class PostDAO extends DBConnPool{
         }
         return board;
     }
+ 	// 태그 검색 후 게시물 개수 반환
+    public int selectTagCount(Map<String, Object> map) {
+        int totalCount = 0;
+        String query = " SELECT COUNT(*) FROM post ";
+        if (map.containsKey("tag")) {
+            query += " WHERE tag LIKE ? ";
+        }
 
+        try {
+            psmt = con.prepareStatement(query);
+            if (map.containsKey("tag")) {
+                psmt.setString(1, "%" + map.get("tag") + "%");
+            }
+            rs = psmt.executeQuery(query);
+            rs.next();
+            totalCount = rs.getInt(1);
+        } catch (Exception e) {
+            System.out.println("태그 검색 게시물 카운트 중 예외 발생");
+            e.printStackTrace();
+        }
+        return totalCount;
+    }
     
     
 }
