@@ -21,15 +21,19 @@
 
 </head>
 <body>
+ <!-- background 이미지 -->
+   <div class="bg-blur"></div>
+   
   <form  action="register.do" method="post" id="login_register_form" name="frm" >
-    <img src="/eats.png">
-    <p>회원가입</p>
+    <img src="/mini2/imgs/logo.png">
+    <p class="registerTitle">회원가입</p>
     <div class="input-container">
       <i class="fa fa-envelope icon"></i>
       <input class="input-field" type="text" placeholder="아이디(이메일)" id="idName" class="idName" name="id">    
     </div>
     <span class="error-message" id="error-idName"></span>
-    <p class="isID" style="color:blue">${message}</p>   
+    <p class="isID" style="color:blue">${message}</p> 
+    
        
   
     <div class="input-container">
