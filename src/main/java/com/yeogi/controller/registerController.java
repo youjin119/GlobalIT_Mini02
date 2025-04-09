@@ -57,41 +57,41 @@ public class registerController extends HttpServlet {
 	    System.out.println("nane: " + name);  // Debugging
 	    System.out.println("Phone number: " + phonenum);  // Debugging
 	    
-	    String adminid = request.getParameter("adminid");  // Nhận giá trị adminid từ request
+	    String adminid = request.getParameter("adminid"); 
 	    String jdate = request.getParameter("jdate");
 	    	    	    
 	   
-	    // Tạo đối tượng model (VO)
+	    //  model (VO) 생성
 	    MemberDTO mVo = new MemberDTO();
 
-	    // Kiểm tra nếu adminid là null hoặc rỗng, gán giá trị mặc định là 0
+	    //  adminid가 null이면 기본값 0으로 설정
 	    int admin = 0;  // Giá trị mặc định là 0
 	    if (adminid != null && !adminid.trim().isEmpty()) {
-	        admin = Integer.parseInt(adminid);  // Nếu có giá trị, chuyển thành int
+	        admin = Integer.parseInt(adminid);  // 값이 있으면, int으로 바꿈
 	    }
 
-	    // Thiết lập các giá trị vào mVo
+	    //  mVo 값 설정
 	    mVo.setId(id);
 	    mVo.setPw(pw);
 	    mVo.setName(name);
 	    mVo.setPhonenum(phonenum);
-	    mVo.setAdminid(admin);  // Sử dụng giá trị admin đã kiểm tra
+	    mVo.setAdminid(admin);  //체크된 admin 값 사용
 
-	    // Lấy ngày hiện tại
-	    Calendar calendar = Calendar.getInstance();  // Lấy ngày giờ hiện tại
-	    Date currentDate = new Date(calendar.getTimeInMillis());  // Chuyển đổi sang java.sql.Date
+	    // 현재 Date 받기
+	    Calendar calendar = Calendar.getInstance();  // 
+	    Date currentDate = new Date(calendar.getTimeInMillis());  // java.sql.Date로 전환
 
-	    mVo.setJdate(currentDate);  // Thiết lập ngày vào mVo
+	    mVo.setJdate(currentDate);  //  mVo에 Date 설정
 
-	    DBConnPool db = new DBConnPool();  // Tạo đối tượng DBConnPool
-	    MemberDAO mDao = MemberDAO.getInstance();// Gọi phương thức insertMember để thêm dữ liệu vào cơ sở dữ liệu
+	    DBConnPool db = new DBConnPool();  
+	    MemberDAO mDao = MemberDAO.getInstance();//insertMember 불러, data 추가
 	   
-	 // Kiểm tra ID đã tồn tại hay chưa
+	 // ID 존재 여부 확인
 	    if (mDao.isIdExist(id)) {
 	        request.setAttribute("message", "ID 이미 존재하고 있습니다, 다른 걸로 입력해주세요!");
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("/mini2/register.jsp");
 	        dispatcher.forward(request, response);
-	        return; // Dừng việc thực hiện tiếp
+	        return; 
 	    }
 	    
 	    
@@ -99,11 +99,11 @@ public class registerController extends HttpServlet {
 	    try {
 	        result = mDao.insertMember(mVo); 
 	    } finally {
-	        db.close();  // Đóng kết nối sau khi hoàn thành
+	        db.close();  
 	    }
 	    
 
-	    HttpSession session = request.getSession();  // Lấy session
+	    HttpSession session = request.getSession();  //  session 꺼내기
 	    if (result == 1) {
 	        session.setAttribute("id", mVo.getId());
 	        request.setAttribute("message", "회원 가입에 성공했습니다.");
@@ -111,7 +111,7 @@ public class registerController extends HttpServlet {
 	        request.setAttribute("message", "회원 가입에 실패했습니다.");
 	    }
 
-	    // Chuyển hướng đến trang login.jsp
+	    //  login.jsp 페이지로 이동
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/mini2/login.jsp");
 	    dispatcher.forward(request, response);
 	}

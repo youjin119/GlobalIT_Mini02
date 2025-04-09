@@ -18,21 +18,21 @@ public class ResetPwController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         String newPw = request.getParameter("newPw");
 
-        MemberDAO dao = MemberDAO.getInstance();  // Lấy instance của DAO
+        MemberDAO dao = MemberDAO.getInstance();  // DAO의 instance 꺼내기
 
         try {
-            // Gọi phương thức dao để đặt lại mật khẩu
+            // dao 매서드 불러 비밀번호 재설정
             boolean success = dao.resetPassword(id, phonenum, newPw);
 
-            // Trả về kết quả
+            
             if (success) {
-                response.setStatus(200);  // Thành công
+                response.setStatus(200);  // 성공
             } else {
-                response.setStatus(400); // Không cập nhật được mật khẩu
+                response.setStatus(400); // 비밀번호 update 안 됌
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.setStatus(500);  // Lỗi server
+            response.setStatus(500);  // server 결함
         }
     }
 }

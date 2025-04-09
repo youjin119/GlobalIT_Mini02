@@ -18,7 +18,7 @@
  <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
 
  <!-- stylesheet -->
- <link href="${pageContext.request.contextPath}mini2/style/member.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/mini2/style/member.css" rel="stylesheet">
 
 </head>
 <body>
@@ -40,44 +40,45 @@
 
     <p style="color:red">${message}</p>
 
-    <!-- Nút mở modal -->
-<p style="cursor:pointer; color:blue;" data-toggle="modal" data-target="#findModal">아이디 비밀번호 찾기 ></p>
-
-<!-- Modal -->
-<div class="modal fade" id="findModal" tabindex="-1" role="dialog" aria-labelledby="findModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-3">
-      <div class="modal-header">
-        <h5 class="modal-title" id="findModalLabel">아이디 / 비밀번호 찾기</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <!-- Tìm ID -->
-        <div class="form-group">
-          <label for="findPhone">전화번호로 아이디 찾기</label>
-          <input type="text" class="form-control" id="findPhone" placeholder="010-XXXX-XXXX">
-          <small class="text-muted" id="foundIdMsg"></small>
-          <button type="button" class="btn btn-primary mt-2"onclick="return findId()">아이디 찾기</button>
-        </div>
-
-        <hr>
-
-        <!-- Đặt lại mật khẩu -->
-        <div class="form-group">
-          <label for="resetId">아이디</label>
-          <input type="text" class="form-control" id="resetId">
-          <label for="resetPhone">전화번호</label>
-          <input type="text" class="form-control" id="resetPhone">
-          <label for="newPassword">새 비밀번호</label>
-          <input type="password" class="form-control" id="newPassword">
-          <small class="text-muted" id="resetMsg"></small>
-          <button  type="button" class="btn btn-success mt-2" onclick="resetPassword()">비밀번호 재설정</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    <!-- ID/ 비밀번호 찾기 모달------------------------------------------------------------------------------------------------>   
+	<!-- 모달 버튼 -->
+	<p style="cursor:pointer; color:blue;" data-toggle="modal" data-target="#findModal">아이디 비밀번호 찾기 ></p>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="findModal" tabindex="-1" role="dialog" aria-labelledby="findModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content p-3">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="findModalLabel">아이디 / 비밀번호 찾기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+	      </div>
+	      <div class="modal-body">
+	        <!-- Tìm ID -->
+	        <div class="form-group">
+	          <label for="findPhone">전화번호로 아이디 찾기</label>
+	          <input type="text" class="form-control" id="findPhone" placeholder="010-XXXX-XXXX">
+	          <small class="text-muted" id="foundIdMsg"></small>
+	          <button type="button" class="btn btn-primary mt-2"onclick="return findId()">아이디 찾기</button>
+	        </div>
+	
+	        <hr>
+	
+	        <!-- 새비밀번호 설정 -->
+	        <div class="form-group">
+	          <label for="resetId">아이디</label>
+	          <input type="text" class="form-control" id="resetId">
+	          <label for="resetPhone">전화번호</label>
+	          <input type="text" class="form-control" id="resetPhone">
+	          <label for="newPassword">새 비밀번호</label>
+	          <input type="password" class="form-control" id="newPassword">
+	          <small class="text-muted" id="resetMsg"></small>
+	          <button  type="button" class="btn btn-success mt-2" onclick="resetPassword()">비밀번호 재설정</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+   <!-- ID/ 비밀번호 찾기 모달 end-->
 
     <button type="submit" class="btn loginBtn">로그인</button>
     <button type="button" class="btn registerBtn btn-outline-primary" onclick="location.href='register.do'">회원가입</button>
@@ -85,7 +86,7 @@
   
  
 
-       <!-- javaScript main -->
+<!-- javaScript main -->
  <script type="text/javascript" src="/mini2/js/member.js"></script>
     
 

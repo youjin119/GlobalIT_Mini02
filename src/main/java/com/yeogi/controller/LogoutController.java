@@ -13,17 +13,10 @@ public class LogoutController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Lấy session hiện tại, không tạo mới nếu chưa có
+        HttpSession session = request.getSession(false); //  현재 session 취소
         if (session != null) {
-            session.invalidate(); // Hủy session (xóa toàn bộ dữ liệu đăng nhập)
+            session.invalidate(); // session 취소 (login data 전부 삭제)
         }
-        response.sendRedirect("login.do"); // Chuyển hướng về trang đăng nhập
+        response.sendRedirect("login.do"); // 로그인 페이지로 이동
     }
-    /**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 }
