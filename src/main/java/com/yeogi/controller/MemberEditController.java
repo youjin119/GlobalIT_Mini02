@@ -63,8 +63,14 @@ public class MemberEditController extends HttpServlet {
 		MemberDAO mDao = MemberDAO.getInstance();
 	   
 	    
+		
 	    try {
 	    	mDao.updateMember(mVo);
+	    	
+	    	// 수정한 후 홈 화면에도 회원 이름 변경 반영
+	    	MemberDTO updatedMember = mDao.getMember(id); 
+	    	request.getSession().setAttribute("loginUser", updatedMember); 
+	    	
 	    } finally {
 	        db.close();  // 실행 후 connect 닫기
 	    }	
