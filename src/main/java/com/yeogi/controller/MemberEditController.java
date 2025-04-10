@@ -63,8 +63,14 @@ public class MemberEditController extends HttpServlet {
 		MemberDAO mDao = MemberDAO.getInstance();
 	   
 	    
+		
 	    try {
 	    	mDao.updateMember(mVo);
+	    	
+	    	// Sau khi updateMember
+	    	MemberDTO updatedMember = mDao.getMember(id); // Lấy lại thông tin mới nhất
+	    	request.getSession().setAttribute("loginUser", updatedMember); // Cập nhật lại loginUser trong session
+	    	
 	    } finally {
 	        db.close();  // 실행 후 connect 닫기
 	    }	

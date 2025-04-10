@@ -47,8 +47,9 @@ public class pListController extends HttpServlet {
 	        String tag = req.getParameter("tag");
 	        if (tag != null && !tag.equals("#전체")) {
 	            map.put("tag", tag);
+	            System.out.println("태그 있는 로직");
 	            
-	            int totalCount = dao.selectCount(map);  // 게시물 개수
+	            int totalCount = dao.selectTagCount(map);  // 게시물 개수
 
 
 		        int pageSize = 10; //한 페이지에 출력할 글의 갯수
@@ -84,8 +85,8 @@ public class pListController extends HttpServlet {
 
 		        // 뷰에 전달할 매개변수 추가
 		        String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-		                blockPage, pageNum, "../pList.do");  // 바로가기 영역 HTML 문자열
-		        System.out.println(pagingImg);
+		                blockPage, pageNum, "../pList.do",tag);  // 바로가기 영역 HTML 문자열
+		        //System.out.println(pagingImg);
 		        map.put("pagingImg", pagingImg);
 		        map.put("totalCount", totalCount);
 		        map.put("pageSize", pageSize);
@@ -101,7 +102,7 @@ public class pListController extends HttpServlet {
 	        }
 	        else {	        	
 	        	int totalCount = dao.selectCount(map);  // 게시물 개수
-	        	
+	        	System.out.println("태그 없는 로직"+tag==null?true:false); //태그가 null이면 true, 이외 값이면 false
 	        	
 	        	int pageSize = 10; //한 페이지에 출력할 글의 갯수
 	        	int blockPage = 5; //페이지 번호의 갯수 1,2,3,4,5
@@ -136,8 +137,8 @@ public class pListController extends HttpServlet {
 	        	
 	        	// 뷰에 전달할 매개변수 추가
 	        	String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-	        			blockPage, pageNum, "../pList.do");  // 바로가기 영역 HTML 문자열
-	        	System.out.println(pagingImg);
+	        			blockPage, pageNum, "../pList.do","#전체");  // 바로가기 영역 HTML 문자열
+	        	//System.out.println(pagingImg);
 	        	map.put("pagingImg", pagingImg);
 	        	map.put("totalCount", totalCount);
 	        	map.put("pageSize", pageSize);
@@ -154,6 +155,7 @@ public class pListController extends HttpServlet {
 	        }
 	}
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -49,7 +49,7 @@ public class PostDAO extends DBConnPool{
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?";
         
-        System.out.println(query.replaceFirst("\\?", map.get("start").toString())+map.get("end").toString());
+        //System.out.println(query.replaceFirst("\\?", map.get("start").toString())+map.get("end").toString());
         
         try {
             psmt = con.prepareStatement(query);
@@ -180,7 +180,6 @@ public class PostDAO extends DBConnPool{
             psmt.setInt(parameterIndex++, (Integer) map.get("start"));
             psmt.setInt(parameterIndex, (Integer) map.get("end"));
             
-            System.out.println(query);
             
             rs = psmt.executeQuery();
             board = new ArrayList<>();
@@ -224,7 +223,7 @@ public class PostDAO extends DBConnPool{
             if (map.containsKey("tag")) {
                 psmt.setString(1, "%" + map.get("tag") + "%");
             }
-            rs = psmt.executeQuery(query);
+            rs = psmt.executeQuery();
             rs.next();
             totalCount = rs.getInt(1);
         } catch (Exception e) {

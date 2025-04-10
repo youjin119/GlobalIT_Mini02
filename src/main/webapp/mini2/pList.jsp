@@ -47,7 +47,7 @@
 				        <div>
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
-				            <p>${post.tag}</p>
+				            <p>${post.tag} ${post.postID }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
 			    	</form>
