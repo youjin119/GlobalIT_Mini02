@@ -265,7 +265,9 @@ tr>td:nth-child(2)>button {
 		    console.log("country =", form.country.value);
 		    const content = document.getElementById('editor').innerHTML.trim(); // innerHTML로 내용 추출
 		    console.log("content =", content); // 확인용
-	
+		    const plainText = editor.innerText.trim();
+		    const hasImages = editor.querySelectorAll("img.inserted-image").length > 0;
+		    
 		    if (form.title.value.trim() === "") {
 		        alert("기사제목을 입력하세요.");
 		        form.title.focus();
@@ -282,11 +284,11 @@ tr>td:nth-child(2)>button {
 		        return false;
 		    }
 	
-		    if (content === "") {
-		        alert("내용을 입력하세요.");
-		        document.getElementById('editor').focus();
-		        return false;
-		    }
+		    if (plainText === "" && !hasImages) {
+		    	  alert("내용을 입력하세요.");
+		    	  editor.focus();
+		    	  return false;
+		    	}
 	 
 		    document.getElementById('content').value = content; // 최종적으로 content를 hidden input에 저장
 		    return true;
