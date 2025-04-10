@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Arrays"%>
+<%@ page import="java.net.URLEncoder" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,20 +9,40 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+
+	 <!-- jQuery/ajax -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	 <!-- Bootstrap4 -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	 <!-- fontawsome -->
+	 <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
+
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v1.4.4">
 
 </head>
 <body>
  <h1 id="toIndexLink">기사 목록 띄우기</h1>
- 	<div class="tagsContainer">
-		<div class="tagSelector tagSelected cursorSetPointer">#전체</div>
-		<div class="tagSelector cursorSetPointer">#여행</div>
-		<div class="tagSelector cursorSetPointer">#아시아</div>
-		<div class="tagSelector cursorSetPointer">#아프리카</div>
-		<div class="tagSelector cursorSetPointer">#아메리카</div> 	
-		<div class="tagSelector cursorSetPointer">#오세아니아</div> 	
- 	</div>
+
+	<div class="tagsContainer">
+		<ul class="breadcrumb">    
+		<%
+			String tagUrl = "pList.do?pageNum=1&tag=";
+			ArrayList<String> tags = 
+					new ArrayList<>(Arrays.asList("#전체","#유럽","#아시아","#아프리카","#아메리카","#오세아니아"));
+		%>    
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(0), "UTF-8") %>">#전체</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(1), "UTF-8") %>">#유럽</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(2), "UTF-8") %>">#아시아</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(3), "UTF-8") %>">#아프리카</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(4), "UTF-8") %>">#아메리카</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(5), "UTF-8") %>">#오세아니아</a></li>
+           <li><a href="pList.do?pageNum=1&tag=%23여행">#여행</a></li>
+		</ul>
+	</div>
  <br>
  <form method="post" action="/pList.do">
  	<!-- <button type="submit" id="plusButton" name="click" value="insert">insert</button> -->
@@ -47,7 +71,7 @@
 				        <div>
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
-				            <p>${post.tag}</p>
+				            <p>${post.tag} ${post.postID }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
 			    	</form>
@@ -55,9 +79,10 @@
 			 </c:forEach>
 		 </c:otherwise>
 	 </c:choose>
-	<div>
-		페이징 처리<br>
-		${ map.pagingImg }
+	<div class="pagingContainer">
+		<div>
+			${ map.pagingImg }
+		</div>
 	</div>
  </div> <!-- 리스트 불러옴 -->
 	
@@ -79,6 +104,10 @@
 		</c:forEach>
 	</div>
 
-	<script src="../mini2/js/pList.js?v=1.2"></script>
+	<script>
+	const selectedTag = "<%= request.getParameter("tag") != null 
+		&& !request.getParameter("tag").isEmpty() ? request.getParameter("tag") : "#전체" %>";
+    </script>
+	<script src="../mini2/js/pList.js?v=1.5.5"></script>
 </body>
 </html>
