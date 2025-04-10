@@ -50,19 +50,21 @@ body{margin:0; padding:0; text-align:center;}
 	.tagsContainer{
 		display: flex;
 		justify-content: center;
+		background: none;
 	}
-	.tagSelector{
+	.tagsContainer .breadcrumb{background: none;}
+	.tagsContainer li{
 		margin : 5px;
 		padding-left: 10px;
 		padding-right: 10px;
-		background-color: #f2f2f2;
+		background-color : #f2f2f2;
 		border-radius: 30px;
-	}
-	.tagSelected{
-		background-color: pink;
-	}
-	.cursorSetPointer{
 		cursor: pointer;
+	}
+	.tagsContainer li a{
+		all: unset;
+		text-decoration : none;
+		color : #000;
 	}
 
    /* 스마트폰 모드 (최대 너비 576px) */

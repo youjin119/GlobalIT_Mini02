@@ -47,7 +47,8 @@ public class pListController extends HttpServlet {
 	        String tag = req.getParameter("tag");
 	        if (tag != null && !tag.equals("#전체")) {
 	            map.put("tag", tag);
-	            System.out.println("태그 있는 로직");
+	            System.out.println("태그 있는 로직 : "+tag!=null?tag:"null");
+	            
 	            
 	            int totalCount = dao.selectTagCount(map);  // 게시물 개수
 
@@ -58,6 +59,8 @@ public class pListController extends HttpServlet {
 		        // 현재 페이지 확인
 		        int pageNum = 1;  // 기본값
 		        String pageTemp = req.getParameter("pageNum");
+		        
+		        
 		        if (pageTemp != null && !pageTemp.equals(""))
 		            pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
 
@@ -85,7 +88,7 @@ public class pListController extends HttpServlet {
 
 		        // 뷰에 전달할 매개변수 추가
 		        String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-		                blockPage, pageNum, "../pList.do",tag);  // 바로가기 영역 HTML 문자열
+		                blockPage, pageNum, "../pList.do",tag != null ? tag : "#전체");  // 바로가기 영역 HTML 문자열
 		        //System.out.println(pagingImg);
 		        map.put("pagingImg", pagingImg);
 		        map.put("totalCount", totalCount);
@@ -137,7 +140,7 @@ public class pListController extends HttpServlet {
 	        	
 	        	// 뷰에 전달할 매개변수 추가
 	        	String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-	        			blockPage, pageNum, "../pList.do","#전체");  // 바로가기 영역 HTML 문자열
+	        			blockPage, pageNum, "../pList.do",tag != null ? tag : "#전체");  // 바로가기 영역 HTML 문자열
 	        	//System.out.println(pagingImg);
 	        	map.put("pagingImg", pagingImg);
 	        	map.put("totalCount", totalCount);
