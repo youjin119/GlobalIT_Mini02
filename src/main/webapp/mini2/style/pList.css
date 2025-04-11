@@ -35,11 +35,19 @@ body{margin:0; padding:0; text-align:center;}
 		background-color: skyblue;
 		opacity: 70%;
 	}
+	.ap{margin : 20px 0px}
 	.panelImg{
 	    width: 150px;
-      		height: 100px;
-      		line-height: 100px;
-      		border: 1px dashed white;
+      	height: 100px;
+      	line-height: 100px;
+      	border: 1px dashed white;
+	}
+	.apText{
+		display: flex;
+		justify-content: space-between;
+	}
+	.apText div{
+		flex-direction: row;
 	}
 	.viewSelector{
 		cursor: pointer;

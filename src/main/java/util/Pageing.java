@@ -4,6 +4,7 @@ public class Pageing {
     public static String pagingStr(int totalCount, int pageSize, int blockPage,
             int pageNum, String reqUrl, String tag) { // tag 파라미터 추가
         String pagingStr = "";
+        tag = tag.replace("#", "%23");
 
         //  전체 페이지 수 계산
         int totalPages = (int) (Math.ceil(((double) totalCount / pageSize)));
