@@ -25,7 +25,21 @@
 
 </head>
 <body>
- <h1 id="toIndexLink">홈 화면 바로가기</h1>
+
+<!-- navbar------------------------------------------------------- -->
+<c:choose>
+  <c:when test="${not empty sessionScope.loginUser}">
+    <!--login 성공하면 logout navbar 나옴  -->
+    <jsp:include page="headerlogout.jsp"></jsp:include>
+  </c:when>
+  <c:otherwise>
+    <!--login 하지 않을 경우 login navbar 나옴  -->
+    <jsp:include page="headerlogin.jsp"></jsp:include>
+  </c:otherwise>
+</c:choose>
+<!-- navbar end-->
+
+ <h1 id="toIndexLink">기사 목록 띄우기</h1>
 
 	<div class="tagsContainer">
 		<ul class="breadcrumb">    

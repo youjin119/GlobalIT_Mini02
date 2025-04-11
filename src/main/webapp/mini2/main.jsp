@@ -8,26 +8,26 @@
 <title>main</title>
 </head>
 <body>
-<h2>홈 화면</h2>
-	<form action="/logout.do">
-		<table>
-			<tr>
-				<td>환영홥니다! ${loginUser.name}님</td>
-			</tr>
-			<tr>
-				<td>
-					<c:if test="${not empty sessionScope.loginUser}">
-    					<a href="logout.do">로그아웃 |</a>
-					</c:if>
-					<c:if test="${not empty sessionScope.loginUser}">
-    					<a href="memberEdit.do?id=${loginUser.id}">화원정보수정</a>
-					</c:if>
-					
-				</td>
-			</tr>
-		</table>
-	</form>
-	<a href="/pList.do">여행기사 </a><br>
-	<a href="/pWrite.do">기사 쓰기</a>
+<!-- navbar------------------------------------------------------- -->
+<c:choose>
+  <c:when test="${not empty sessionScope.loginUser}">
+    <!--login 성공하면 logout navbar 나옴  -->
+    <jsp:include page="headerlogout.jsp"></jsp:include>
+  </c:when>
+  <c:otherwise>
+    <!--login 하지 않을 경우 login navbar 나옴  -->
+    <jsp:include page="headerlogin.jsp"></jsp:include>
+  </c:otherwise>
+</c:choose>
+<!-- navbar end-->
+
+
+
+
+
+
+
+
+
 </body>
 </html>

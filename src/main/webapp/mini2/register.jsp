@@ -25,7 +25,9 @@
    <div class="bg-blur"></div>
    
   <form  action="register.do" method="post" id="login_register_form" name="frm" >
-    <img src="/mini2/imgs/logo.png">
+    <a href="/mini2/index.jsp">
+     <img class="loginReImg" src="/mini2/imgs/logo.png">
+    </a>
     <p class="registerTitle">회원가입</p>
     <div class="input-container">
       <i class="fa fa-envelope icon"></i>
