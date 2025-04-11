@@ -43,7 +43,7 @@
 
 
 
-<!--footer  -->
+<!--footer  ---->
  <jsp:include page="footer.jsp"></jsp:include>
 
 
