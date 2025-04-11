@@ -21,7 +21,7 @@
 	 <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
 
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v1.4.4">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v1.5.4">
 
 </head>
 <body>
@@ -76,10 +76,10 @@
 			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
 						<c:choose>
 						    <c:when test="${post.content == null}">
-						        <img src="/mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						        <img src="/mini2/imgs/default.png" alt="기본 이미지" class="mainImgs">
 						    </c:when>
 						    <c:otherwise>
-						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
+						        <img src="/uploads/${post.content}" alt="${post.title }" class="mainImgs">
 						    </c:otherwise>
 						</c:choose>
 				        <div>
@@ -101,7 +101,7 @@
  </div> <!-- 리스트 불러옴 -->
 	
 	<div id="absolutePanel">
-		테스트
+		<div>New Recommend❣</div>
 	 	<c:forEach items="${panelLists }" var="best">
 			<div class="aP">
 				<c:choose>
@@ -112,8 +112,10 @@
 				        <img src="/uploads/${best.content}" alt="로드실패" class="panelImg">
 				    </c:otherwise>
 				</c:choose>
-				<br>
-				${best.title}<br>
+				<div class="apText">
+					<div>${best.title}</div>
+					<div>${best.tag}</div>
+				</div>
 			</div>
 		</c:forEach>
 	</div>
