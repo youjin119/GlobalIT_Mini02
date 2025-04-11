@@ -39,8 +39,6 @@
 </c:choose>
 <!-- navbar end-->
 
- <h1 id="toIndexLink">기사 목록 띄우기</h1>
-
 	<div class="tagsContainer">
 		<ul class="breadcrumb">    
 		<%
@@ -67,9 +65,8 @@
  <div class="boardListsContainer">
 	 <c:choose>
 		 <c:when test="${ empty boardLists }">
-		 	등록된 게시물이 없습니다^^*
+		 	🧭🗺 앗, 아직 아무도 다녀가지 않았나봐요~ 🧭🗺
 		 </c:when>
-		 
 		 <c:otherwise>
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
