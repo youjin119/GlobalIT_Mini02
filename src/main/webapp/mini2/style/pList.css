@@ -3,14 +3,6 @@
 body{margin:0; padding:0; text-align:center;}
 
 
-.pListForm {
-/* 	padding: 0px;
-	background: none; */
-	
-}
-
-
-
    .bordertest{
        display: flex;
        flex-direction: row;
