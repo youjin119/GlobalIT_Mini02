@@ -19,7 +19,7 @@
     <div class="container">
 	<nav class="navbar navbar-expand-md  navbar-dark">
 	   <!-- Logo -->
-	   <a class="navbar-brand text-white" href="/pList.do">
+	   <a class="navbar-brand text-white" href="/main.do">
 	    <img class="logoNavBar" src="/mini2/imgs/logoPNG.png" alt="로고" height="30"> 
 	  </a>
 	
