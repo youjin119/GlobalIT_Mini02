@@ -26,7 +26,7 @@
    <div class="bg-blur"></div>
  
   <form  id="login_register_form" action="/login.do" method="post">
-    <a href="/mini2/index.jsp">
+    <a href="/main.do">
      <img class="loginReImg" src="/mini2/imgs/logo.png">
     </a>
     <p class="loginTitle">* 이메일 로그인</p>
