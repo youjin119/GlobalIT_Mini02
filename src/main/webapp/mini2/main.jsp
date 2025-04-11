@@ -21,7 +21,9 @@
 </c:choose>
 <!-- navbar end-->
 
-
+<%
+response.sendRedirect("/pList.do");
+%> 
 
 
 
