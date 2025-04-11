@@ -12,7 +12,7 @@
 
 
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v=1.2">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=5.2">
 
 </head>
 <body>
@@ -45,17 +45,13 @@
            <li><a href="pList.do?pageNum=1&tag=%23여행">#여행</a></li>
 		</ul>
 	</div>
- <br>
- <form method="post" action="/pList.do" class="pListForm">
- 	<!-- <button type="submit" id="plusButton" name="click" value="insert">insert</button> -->
- 	<button type="submit" id="updateButton" name="click" value="update">새로고침</button>
- 	<button type="reset" id="delButton" name="click" value="delete">test</button>
- </form>
  
- <div class="boardListsContainer">
+	<div class="boardListsContainer">
 	 <c:choose>
 		 <c:when test="${ empty boardLists }">
-		 	🧭🗺 앗, 아직 아무도 다녀가지 않았나봐요~ 🧭🗺
+		 	<div id="noBoardLists">
+			 	🧭🗺 앗, 아직 아무도 다녀가지 않았나봐요~ 🧭🗺
+		 	</div>
 		 </c:when>
 		 <c:otherwise>
 			 <c:forEach items="${boardLists }" var="post">
@@ -66,7 +62,7 @@
 						        <img src="/mini2/imgs/default.png" alt="기본 이미지" class="mainImgs">
 						    </c:when>
 						    <c:otherwise>
-						        <img src="/uploads/${post.content}" alt="${post.title }" class="mainImgs">
+						        <img src="/uploads/${post.content}" alt="${post.title}" class="mainImgs">
 						    </c:otherwise>
 						</c:choose>
 				        <div>
@@ -81,7 +77,7 @@
 		 </c:otherwise>
 	 </c:choose>
 	<div class="pagingContainer">
-		<div>
+		<div class="pageStyleSet">
 			${ map.pagingImg }
 		</div>
 	</div>
@@ -89,20 +85,22 @@
 	
 	<div id="absolutePanel">
 		<div>New Recommend❣</div>
-	 	<c:forEach items="${panelLists }" var="best">
+	 	<c:forEach items="${panelLists}" var="best">
 			<div class="aP">
-				<c:choose>
-				    <c:when test="${best.content == null}">
-				        <img src="/mini2/imgs/default.png" alt="로드실패" class="panelImg">
-				    </c:when>
-				    <c:otherwise>
-				        <img src="/uploads/${best.content}" alt="로드실패" class="panelImg">
-				    </c:otherwise>
-				</c:choose>
-				<div class="apText">
-					<div>${best.title}</div>
-					<div>${best.tag}</div>
-				</div>
+				<form method="get" action="/pView.do" id="aPForm${best.postID}" class="pListForm">
+					<c:choose>
+					    <c:when test="${best.content == null}">
+					        <img src="/mini2/imgs/default.png" alt="기본 이미지" class="panelImg">
+					    </c:when>
+					    <c:otherwise>
+					        <img src="/uploads/${best.content}" alt="${best.title}" class="panelImg">
+					    </c:otherwise>
+					</c:choose>
+					<div class="apText">
+						<div id="aPLink${best.postID}" class="aPSelector">${best.title}</div>
+					</div>
+					<input type="hidden" name="postID" value="${best.postID}">
+				</form>
 			</div>
 		</c:forEach>
 	</div>
@@ -111,6 +109,6 @@
 	const selectedTag = "<%= request.getParameter("tag") != null 
 		&& !request.getParameter("tag").isEmpty() ? request.getParameter("tag") : "#전체" %>";
     </script>
-	<script src="/mini2/js/pList.js?v=1.0"></script>
+	<script src="/mini2/js/pList.js?v=5.6"></script>
 </body>
 </html>

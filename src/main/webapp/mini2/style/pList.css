@@ -33,23 +33,27 @@ body{margin:0; padding:0; text-align:center;}
 		bottom: 10vh;
 		width: 200px;
 		height: 500px;
-		background-color: skyblue;
+		background-color: #78C8BA;
 		opacity: 70%;
 		padding: 10px;
 	}
 	.ap{margin : 20px 0px}
 	.panelImg{
-	    width: 150px;
-      	height: 100px;
-      	line-height: 100px;
+	    width: 100%;
+	    min-width: 179px;
+      	height: 120px;
+      	min-height:120px;
       	border: 1px dashed white;
 	}
 	.apText{
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: nowrap;
+      	cursor: pointer;
 	}
 	.apText div{
 		flex-direction: row;
+		margin-bottom: 10px;
 	}
 	.viewSelector{
 		cursor: pointer;
@@ -75,6 +79,33 @@ body{margin:0; padding:0; text-align:center;}
 		text-decoration : none;
 		color : #000;
 	}
+	#noBoardLists{
+		display: flex;
+		justify-content: center;
+		margin-top: 30vh;
+	}
+	.pagingContainer{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+		font-size: 1.5em;
+		
+	}
+	.pageStyleSet a{
+		text-decoration:none;
+		color: #aaa;
+		margin: 10px;
+	}
+	.pageStyleSet span{
+		/* background-color: #78C8BA; */
+		margin: 10px;
+		cursor: default;
+	}
+
+	
+	
+	
 
    /* 스마트폰 모드 (최대 너비 576px) */
    @media (max-width: 576px) {
