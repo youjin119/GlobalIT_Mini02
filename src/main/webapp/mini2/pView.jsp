@@ -103,7 +103,7 @@ a {
 		<div class="tag">
 			<c:if test="${not empty pdto.tag}">
 				<c:forTokens var="t" items="${pdto.tag}" delims=",">
-                #${t} 
+                ${t} 
             </c:forTokens>
 			</c:if>
 		</div>
