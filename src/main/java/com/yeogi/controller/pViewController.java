@@ -47,7 +47,12 @@ public class pViewController extends HttpServlet {
 
 		// 줄바꿈 처리
 		pdto.setContent(pdto.getContent().replaceAll("\r\n", "<br/>"));
-
+		
+		
+		// 💡 페이지 번호 받아서 저장
+		String pageNum = request.getParameter("pageNum");
+		request.setAttribute("pageNum", pageNum);
+		System.out.println("넘어온 pageNum = " + pageNum);
 		
 		// 💡 세션에서 loginUser 가져와서 JSP에 넘기기
 		HttpSession session = request.getSession();
