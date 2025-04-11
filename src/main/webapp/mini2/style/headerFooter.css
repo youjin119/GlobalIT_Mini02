@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+
+/*  header--------------------------------- */
+/* ---------------------------------------- */
+.navBar{
+  background-color: #78C8BA;
+}
+
+.btn-login {
+  background-color: #e8f0fa;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: black;
+}
+
+.btn-login {
+  background-color: #e8f0fa;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: black;
+}
+
+
+.nav-item{
+  font-weight: bold;
+  margin: auto 15px;
+}
+.peopleName{
+  color: gray;
+}
+
+/* footer------------------------------------- */
+/* -------------------------------------------- */
+
+.footer-links span {
+  margin: 0 5px;
+  color: #6c757d; /* Bootstrap text-muted */
+}
+
+.footer-links .divider {
+  color: #d3d3d3;
+}
+
+.footer-links .font-weight-bold {
+  color: #212529;
+  
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+/* ------------------------------------------ */
+/* 상세내용이 navbar 밑에 있는 것 */
+.main_content {
+ padding-top: 100px;
+}

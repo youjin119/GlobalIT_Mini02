@@ -1,39 +1,5 @@
 @charset "UTF-8";
 
-/*  header--------------------------------- */
-/* ---------------------------------------- */
-.navBar{
-  background-color: #78C8BA;
-}
-
-.btn-login {
-  background-color: #e8f0fa;
-  border-radius: 20px;
-  padding: 5px 15px;
-  font-weight: bold;
-  color: black;
-}
-
-.btn-login {
-  background-color: #e8f0fa;
-  border-radius: 20px;
-  padding: 5px 15px;
-  font-weight: bold;
-  color: black;
-}
-
-
-.nav-item{
-  font-weight: bold;
-  margin: auto 15px;
-}
-.peopleName{
-  color: gray;
-}
-
-
-
-
 /* 로그인 페이지-------------------------------- */
 /* ---------------------------------------------- */
 
