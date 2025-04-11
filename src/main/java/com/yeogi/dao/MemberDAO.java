@@ -210,5 +210,22 @@ public class MemberDAO extends DBConnPool {
         return success;
     }
      
+    public boolean isAdmin(String id) {
+    	boolean result = false;
+    	String sql = " select adminid from member where id = ? ";
+    	try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, id);
+            
+            rs = psmt.executeQuery();
+            rs.next();
+            int qResult = rs.getInt(1);
+            System.out.println(qResult);
+            result = qResult == 1 ? true : false;
+    	}catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return result;
+    }
     
 }

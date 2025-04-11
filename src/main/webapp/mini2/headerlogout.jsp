@@ -73,7 +73,11 @@
   </div>
  </div>
 
-
+	<script>
+		const userId = "${loginUser.id}";
+		const isadmin = "${admin}";
+	</script>
+	<script src="/mini2/js/logout.js?v=1.3"></script>	
 
 </body>
 </html>
