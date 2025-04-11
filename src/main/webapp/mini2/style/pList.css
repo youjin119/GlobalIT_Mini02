@@ -2,6 +2,15 @@
 
 body{margin:0; padding:0; text-align:center;}
 
+
+.pListForm {
+/* 	padding: 0px;
+	background: none; */
+	
+}
+
+
+
    .bordertest{
        display: flex;
        flex-direction: row;
@@ -34,8 +43,9 @@ body{margin:0; padding:0; text-align:center;}
 		height: 500px;
 		background-color: skyblue;
 		opacity: 70%;
+		padding: 10px;
 	}
-	.ap{margin : 20px 10px}
+	.ap{margin : 20px 0px}
 	.panelImg{
 	    width: 150px;
       	height: 100px;
@@ -52,9 +62,7 @@ body{margin:0; padding:0; text-align:center;}
 	.viewSelector{
 		cursor: pointer;
 	}
-	p{
-		pointer-events: none;
-	}
+
 	.tagsContainer{
 		display: flex;
 		justify-content: center;

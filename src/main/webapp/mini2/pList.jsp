@@ -21,23 +21,22 @@
 	 <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
 
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v1.5.4">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=1.2">
 
 </head>
 <body>
-
 <!-- navbar------------------------------------------------------- -->
-<c:choose>
-  <c:when test="${not empty sessionScope.loginUser}">
-    <!--login 성공하면 logout navbar 나옴  -->
-    <jsp:include page="headerlogout.jsp"></jsp:include>
-  </c:when>
-  <c:otherwise>
-    <!--login 하지 않을 경우 login navbar 나옴  -->
-    <jsp:include page="headerlogin.jsp"></jsp:include>
-  </c:otherwise>
-</c:choose>
-<!-- navbar end-->
+	<c:choose>
+	  <c:when test="${not empty sessionScope.loginUser}">
+	    <!--login 성공하면 logout navbar 나옴  -->
+	    <jsp:include page="headerlogout.jsp"></jsp:include>
+	  </c:when>
+	  <c:otherwise>
+	    <!--login 하지 않을 경우 login navbar 나옴  -->
+	    <jsp:include page="headerlogin.jsp"></jsp:include>
+	  </c:otherwise>
+	</c:choose>
+	<!-- navbar end-->
 
 	<div class="tagsContainer">
 		<ul class="breadcrumb">    
@@ -56,7 +55,7 @@
 		</ul>
 	</div>
  <br>
- <form method="post" action="/pList.do">
+ <form method="post" action="/pList.do" class="pListForm">
  	<!-- <button type="submit" id="plusButton" name="click" value="insert">insert</button> -->
  	<button type="submit" id="updateButton" name="click" value="update">새로고침</button>
  	<button type="reset" id="delButton" name="click" value="delete">test</button>
@@ -70,7 +69,7 @@
 		 <c:otherwise>
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
-			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
+			    	<form method="get" action="/pView.do" id="viewForm${post.postID}" class="pListForm">
 						<c:choose>
 						    <c:when test="${post.content == null}">
 						        <img src="/mini2/imgs/default.png" alt="기본 이미지" class="mainImgs">
@@ -121,6 +120,6 @@
 	const selectedTag = "<%= request.getParameter("tag") != null 
 		&& !request.getParameter("tag").isEmpty() ? request.getParameter("tag") : "#전체" %>";
     </script>
-	<script src="../mini2/js/pList.js?v=1.5.5"></script>
+	<script src="/mini2/js/pList.js?v=1.0"></script>
 </body>
 </html>
