@@ -45,7 +45,7 @@
 	      </li>
 	
 	      <li class="nav-item">
-	        <a class="nav-link" >환영홥니다!<span class="peopleName"> ${loginUser.name}</span>님</a>  
+	        <a class="nav-link" >환영합니다!<span class="peopleName"> ${loginUser.name}</span>님</a>  
 	      </li>
 	
 	      <li>
