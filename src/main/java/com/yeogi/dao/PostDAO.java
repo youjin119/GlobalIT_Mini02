@@ -1,6 +1,7 @@
 package com.yeogi.dao;
 
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -233,5 +234,77 @@ public class PostDAO extends DBConnPool{
         return totalCount;
     }
     
+    public int updatePost(PostDTO pdto) {
+        int result = 0;
+        String sql = "UPDATE post SET title=?, tag=?, country=?, content=? WHERE postID=?";
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, pdto.getTitle());
+            psmt.setString(2, pdto.getTag());
+            psmt.setString(3, pdto.getCountry());
+            psmt.setString(4, pdto.getContent());
+            psmt.setInt(5, pdto.getPostID());
+
+            result = psmt.executeUpdate();  // 수정 성공 시 1 반환
+        } catch (Exception e) {
+            System.out.println("게시글 수정 중 예외 발생");
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    
+    public List<String> getImgIdsByPostID(int postID) {
+        List<String> imgIds = new ArrayList<>();
+        String sql = "SELECT imgid FROM img WHERE postID = ?";
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, postID);
+            rs = psmt.executeQuery();
+            while (rs.next()) {
+                imgIds.add(rs.getString("imgid"));
+            }
+        } catch (Exception e) {
+            System.out.println("이미지 ID 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        return imgIds;
+    }
+    
+    public void deletePost(int postID, String uploadPath) {
+        try {
+        	System.out.println("uploadPath = " + uploadPath);
+        	
+        	// 이미지 파일명 조회
+            List<String> imgIds = getImgIdsByPostID(postID);
+
+	            // 이미지 파일 삭제
+	            for (String imgId : imgIds) {
+	                File file = new File(uploadPath + File.separator + imgId);
+	                if (file.exists()) {
+	                    file.delete();
+	                }
+	            }
+	        	
+            // 1. 이미지 삭제 (postID에 해당하는 모든 이미지 삭제)
+            String deleteImagesSQL = "DELETE FROM img WHERE postID = ?";
+            psmt = con.prepareStatement(deleteImagesSQL);
+            psmt.setInt(1, postID);
+            psmt.executeUpdate();
+
+            // 2. 게시글 삭제
+            String deletePostSQL = "DELETE FROM post WHERE postID = ?";
+            psmt = con.prepareStatement(deletePostSQL);
+            psmt.setInt(1, postID);
+            psmt.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            System.out.println("게시글 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+    }
     
 }

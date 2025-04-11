@@ -2,6 +2,7 @@
 
 body{margin:0; padding:0; text-align:center;}
 
+
    .bordertest{
        display: flex;
        flex-direction: row;
@@ -34,6 +35,7 @@ body{margin:0; padding:0; text-align:center;}
 		height: 500px;
 		background-color: skyblue;
 		opacity: 70%;
+		padding: 10px;
 	}
 	.ap{margin : 20px 0px}
 	.panelImg{
@@ -52,13 +54,12 @@ body{margin:0; padding:0; text-align:center;}
 	.viewSelector{
 		cursor: pointer;
 	}
-	p{
-		pointer-events: none;
-	}
+
 	.tagsContainer{
 		display: flex;
 		justify-content: center;
 		background: none;
+		margin-top: 150px;
 	}
 	.tagsContainer .breadcrumb{background: none;}
 	.tagsContainer li{

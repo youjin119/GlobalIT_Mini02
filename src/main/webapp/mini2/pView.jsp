@@ -103,7 +103,7 @@ a {
 		<div class="tag">
 			<c:if test="${not empty pdto.tag}">
 				<c:forTokens var="t" items="${pdto.tag}" delims=",">
-                #${t} 
+                ${t} 
             </c:forTokens>
 			</c:if>
 		</div>
@@ -130,9 +130,7 @@ a {
 				</a>
 				</span>
 			</c:if>
-			<span> <a href="/pList.do">📋<br>목록
-			</a>
-			</span>
+			<span> <a href="/pList.do?pageNum=${pageNum}">📋<br>목록</a> </span>
 		</div>
 	</div>
 
