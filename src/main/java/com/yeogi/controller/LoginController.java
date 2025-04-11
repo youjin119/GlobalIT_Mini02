@@ -66,6 +66,7 @@ public class LoginController extends HttpServlet {
 			MemberDTO mVo = mDao.getMember(id);			
 			HttpSession session = request.getSession();			
 			session.setAttribute("loginUser",mVo);
+			session.setAttribute("admin",mDao.isAdmin(id)?1:0);
 			
 			
 			url = "main.do";
