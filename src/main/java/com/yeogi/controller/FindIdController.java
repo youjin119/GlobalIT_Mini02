@@ -16,9 +16,15 @@ public class FindIdController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         System.out.println(phonenum);
 
-        MemberDAO dao = MemberDAO.getInstance();
-        String foundId = dao.findIdByPhone(phonenum);
-        System.out.println(foundId);
+        MemberDAO dao = new MemberDAO();  // ✅ không dùng getInstance()
+        String foundId = null;
+
+        try {
+            foundId = dao.findIdByPhone(phonenum);
+            System.out.println(foundId);
+        } finally {
+            dao.close();  // ✅ luôn đóng sau khi xong
+        }
 
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write("{\"id\":\"" + (foundId != null ? foundId : "") + "\"}");

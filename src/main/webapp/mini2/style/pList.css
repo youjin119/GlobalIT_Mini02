@@ -6,9 +6,9 @@ body{margin:0; padding:0; text-align:center;}
 	display: flex;
 	flex-direction: row;
 	border: 1px solid #f2f2f2;
-	/* margin-left: 20vh;
-	margin-right: 20vh; */
-	margin: 10px 20vh;
+	margin: 0px auto;
+	max-width: 850px;
+	
 }
 .bordertest > form { /* 수정: form 태그에 스타일 적용 */
     display: flex;
@@ -23,7 +23,7 @@ body{margin:0; padding:0; text-align:center;}
   	width: 150px;
       height: 150px;
       line-height: 150px;
-      margin-right: 10vh;
+      margin-right: 2.5vw;
   }
 #absolutePanel{
 	position: fixed;
@@ -52,6 +52,9 @@ body{margin:0; padding:0; text-align:center;}
 .apText div{
 	flex-direction: row;
 	margin-bottom: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .viewSelector{
 	cursor: pointer;
@@ -84,6 +87,7 @@ body{margin:0; padding:0; text-align:center;}
 }
 .pagingContainer{
 	display: flex;
+	padding: 30px 0px;
 	justify-content: center;
 	align-items: center;
 	
@@ -105,8 +109,6 @@ body{margin:0; padding:0; text-align:center;}
 	margin: 10px;
 	cursor: default;
 }
-
-
 
 
 

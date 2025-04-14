@@ -12,10 +12,10 @@
 
 
 	<title>여기저기</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v=5.3">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=6.0.2">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- navbar------------------------------------------------------- -->
 	<c:choose>
 	  <c:when test="${not empty sessionScope.loginUser}">
@@ -106,7 +106,8 @@
 			</div>
 		</c:forEach>
 	</div>
-
+	<jsp:include page="footer.jsp"></jsp:include>
+	
 	<script>
 	const selectedTag = "<%= request.getParameter("tag") != null 
 		&& !request.getParameter("tag").isEmpty() ? request.getParameter("tag") : "#전체" %>";
