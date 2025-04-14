@@ -78,7 +78,7 @@
                     <span><a href="/pEdit.do?postID=${pdto.postID}">🛠️<br>수정</a></span>
                     <span><a href="/pDelete.do?postID=${pdto.postID}" onclick="return confirm('정말 삭제하시겠습니까?')">🗑️<br>삭제</a></span>
                 </c:if>
-                <span><a href="/pList.do?pageNum=${param.pageNum}&tag=${fn:replace(param.tag, '#', '%23')}">📋<br>목록</a></span>
+                <span><a href="/pList.do?pageNum=${pageNum}&tag=${fn:replace(tag, '#', '%23')}">📋<br>목록</a></span>
             </div>
         </div>
     </div>

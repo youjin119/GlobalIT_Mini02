@@ -71,7 +71,3 @@ public class pLikeController extends HttpServlet {
         response.sendRedirect("/pView.do?postID=" + postID);
     }
 	}
-
-
-
-

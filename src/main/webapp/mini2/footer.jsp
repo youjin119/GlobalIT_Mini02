@@ -8,14 +8,14 @@
  <title>footer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
+
+
   <!-- stylesheet -->
   <link href="${pageContext.request.contextPath}/mini2/style/headerFooter.css" rel="stylesheet">
 </head>
 <body>
 
-  <footer class="footer mt-auto py-3 bg-light border-top"> <!-- fixed-bottom -> x --> 
+  <footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
     <div class="container text-center text-muted small d-flex flex-wrap  gap-2 footer-links">      
       <span><strong>&copy; YEOGI Corp.</strong></span>
       <span class="divider">|</span>

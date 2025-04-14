@@ -31,7 +31,7 @@
     <div class="container">
 	<nav class="navbar navbar-expand-md  navbar-dark">
 	   <!-- Logo -->
-	   <a class="navbar-brand text-white" href="/pList.do">
+	   <a class="navbar-brand text-white" href="/main.do">
 	    <img class="logoNavBar" src="/mini2/imgs/logoPNG.png" alt="로고" height="30"> <!-- hoặc chữ: MiniTravel -->
 	   </a>
 	
@@ -45,7 +45,7 @@
 	      </li>
 	
 	      <li class="nav-item">
-	        <a class="nav-link" >환영홥니다!<span class="peopleName"> ${loginUser.name}</span>님</a>  
+	        <a class="nav-link" >환영합니다!<span class="peopleName"> ${loginUser.name}</span>님</a>  
 	      </li>
 	
 	      <li>
@@ -73,7 +73,11 @@
   </div>
  </div>
 
-
+	<script>
+		const userId = "${loginUser.id}";
+		const isadmin = "${admin}";
+	</script>
+	<script src="/mini2/js/logout.js?v=1.3"></script>	
 
 </body>
 </html>
