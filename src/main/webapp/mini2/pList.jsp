@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 
 
-	<title>work</title>
+	<title>여기저기</title>
 	<link rel="stylesheet" href="/mini2/style/pList.css?v=5.3">
 
 </head>
