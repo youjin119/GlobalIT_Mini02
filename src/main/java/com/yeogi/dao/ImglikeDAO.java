@@ -143,6 +143,7 @@ public class ImglikeDAO extends DBConnPool  {
 
     // 특정 게시글의 좋아요 수 반환
     public int getLikeCount(int postID) {
+    	int likeCount=0;
         String sql = "SELECT COUNT(*) FROM post_like WHERE postID = ?";
         try {
             psmt = con.prepareStatement(sql);
@@ -154,6 +155,6 @@ public class ImglikeDAO extends DBConnPool  {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return 0;
+        return likeCount;
     }
 }
