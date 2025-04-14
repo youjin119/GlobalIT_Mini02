@@ -1,23 +1,30 @@
 $(document).ready(function(){
-       $(".like-btn").click(function(e){
-           e.preventDefault(); // 기본 폼 제출 방지
+    $(".like-btn").click(function(e){
+        e.preventDefault();
 
-           var postID = $(this).siblings("input[name='postID']").val(); // postID 가져오기
-           var button = $(this);
-           
-           $.post("/pLike.do", { postID: postID }, function(response){
-               // 좋아요 상태가 바뀌었으면 버튼의 텍스트를 업데이트
-               console.log(response);
-               if (response.isLiked) {
-                   button.addClass("liked");
-                   button.html("❤️"); // 좋아요 상태로 변경
-               } else {
-                   button.removeClass("liked");
-                   button.html("🤍"); // 좋아요 취소 상태로 변경
-               }
+        // 로그인 안 된 사용자는 <a> 태그 → 그냥 링크로 이동
+        if ($(this).is("a")) {
+            window.location.href = $(this).attr("href");
+            return;
+        }
 
-               // 좋아요 수를 갱신
-               $(".like-count").text(response.likeCount);
-           });
-       });
-   });
+        var postID = $(this).siblings("input[name='postID']").val();
+        var button = $(this);
+
+        $.post("/pLike.do", { postID: postID }, function(response){
+            if (response.redirect) {
+                window.location.href = response.redirect;
+                return;
+            }
+
+            if (response.isLiked) {
+                button.addClass("liked").html("❤️");
+            } else {
+                button.removeClass("liked").html("🤍");
+            }
+
+            var likeCountSpan = button.closest(".top-icons").find(".like-count");
+            likeCountSpan.text(response.likeCount);
+        }, "json");
+    });
+});

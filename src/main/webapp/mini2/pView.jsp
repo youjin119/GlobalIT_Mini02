@@ -7,8 +7,6 @@
     <meta charset="UTF-8">
     <title>${pdto.title}</title>
     <link rel="stylesheet" href="/mini2/style/pView.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/mini2/js/pView.js"></script>
 </head>
 <body class="d-flex-column min-vh-100">
     <c:choose>
@@ -20,7 +18,7 @@
         </c:otherwise>
     </c:choose>
 
-    <div class="main_content">
+    <div class="main-content">
         <div class="post-container">
             <div class="title">${pdto.title}</div>
             <div class="meta">${pdto.country} 
@@ -87,4 +85,5 @@
 
     <jsp:include page="footer.jsp" />
 </body>
+    <script src="/mini2/js/pView.js"></script>
 </html>
