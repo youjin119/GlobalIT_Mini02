@@ -72,7 +72,7 @@ public class PostDAO extends DBConnPool{
             	dto.setPostID(rs.getInt("postID"));  // ✅ postID 설정
                 dto.setId(rs.getString("id"));
                 dto.setTitle(rs.getString("title"));
-                dto.setTag(rs.getString("tag"));
+                dto.setTag(rs.getString("tag").replace(",", " "));
                 dto.setCountry(rs.getString("country"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dto.setPostDate(sdf.format(rs.getDate("postDate")));
@@ -196,7 +196,7 @@ public class PostDAO extends DBConnPool{
             	
                 dto.setPostID(rs.getInt(1));
                 dto.setTitle(rs.getString(2));
-                dto.setTag(rs.getString(3));
+                dto.setTag(rs.getString(3).replace(",", " "));
                 dto.setCountry(rs.getString(4));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dto.setPostDate(sdf.format(rs.getDate("postDate")));

@@ -42,7 +42,6 @@
            <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(3), "UTF-8") %>">#아프리카</a></li>
            <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(4), "UTF-8") %>">#아메리카</a></li>
            <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(5), "UTF-8") %>">#오세아니아</a></li>
-           <li><a href="pList.do?pageNum=1&tag=%23여행">#여행</a></li>
 		</ul>
 	</div>
  
@@ -68,7 +67,7 @@
 				        <div>
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
-				            <p>${post.tag} ${post.postID }</p>
+				            <p>${post.tag}</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
 				        
