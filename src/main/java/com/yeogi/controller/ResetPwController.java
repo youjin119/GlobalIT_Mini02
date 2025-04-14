@@ -18,21 +18,21 @@ public class ResetPwController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         String newPw = request.getParameter("newPw");
 
-        MemberDAO dao = MemberDAO.getInstance();  // DAO의 instance 꺼내기
+        MemberDAO dao = new MemberDAO();  
 
         try {
-            // dao 매서드 불러 비밀번호 재설정
             boolean success = dao.resetPassword(id, phonenum, newPw);
 
-            
             if (success) {
                 response.setStatus(200);  // 성공
             } else {
-                response.setStatus(400); // 비밀번호 update 안 됌
+                response.setStatus(400);  //  ID or 전화번호 불일치
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.setStatus(500);  // server 결함
+            response.setStatus(500);  // 서버 오류
+        } finally {
+            dao.close();  // DB 지원 반납
         }
     }
 }

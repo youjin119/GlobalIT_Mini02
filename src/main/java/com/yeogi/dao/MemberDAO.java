@@ -8,7 +8,7 @@ import conn.DBConnPool; // Kế thừa từ DBConnPool
 public class MemberDAO extends DBConnPool { 
     private static MemberDAO instance = new MemberDAO();
 
-    private MemberDAO() {}
+    public MemberDAO() {}
 
     public static MemberDAO getInstance() {
         return instance;
@@ -33,13 +33,7 @@ public class MemberDAO extends DBConnPool {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }}
+        } 
         return result;
     }
  
@@ -60,13 +54,6 @@ public class MemberDAO extends DBConnPool {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return exists;
     }
@@ -89,14 +76,7 @@ public class MemberDAO extends DBConnPool {
             result = psmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return result;
     }
 
@@ -121,14 +101,7 @@ public class MemberDAO extends DBConnPool {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return mVo;
     }
 
@@ -147,14 +120,7 @@ public class MemberDAO extends DBConnPool {
             result = psmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            }
+        } 
         return result;
     }
     
@@ -173,14 +139,7 @@ public class MemberDAO extends DBConnPool {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (psmt != null) psmt.close();
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return foundId;
     }
     
@@ -199,17 +158,10 @@ public class MemberDAO extends DBConnPool {
             success = result > 0;
         } catch (Exception e) {
             e.printStackTrace();  //에러가 있으면 처리
-        } finally {
-            try {
-                if (psmt != null) psmt.close(); 
-                if (rs != null) rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return success;
     }
-     
+    
     public boolean isAdmin(String id) {
     	boolean result = false;
     	String sql = " select adminid from member where id = ? ";
@@ -227,5 +179,10 @@ public class MemberDAO extends DBConnPool {
 		}
     	return result;
     }
-    
+     
+//  Cuối class MemberDAO
+    public void close() {
+        super.close(); // Gọi close() từ DBConnPool để đóng kết nối
+    }
+//    
 }

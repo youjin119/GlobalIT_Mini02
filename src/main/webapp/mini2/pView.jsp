@@ -8,7 +8,7 @@
     <title>${pdto.title}</title>
     <link rel="stylesheet" href="/mini2/style/pView.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
     <c:choose>
         <c:when test="${not empty sessionScope.loginUser}">
             <jsp:include page="headerlogout.jsp" />
