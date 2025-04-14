@@ -82,7 +82,7 @@ public class LoginController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-//dieu chinh
+    
 	}
 		
 	
