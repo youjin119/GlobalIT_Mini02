@@ -21,7 +21,7 @@
  <link href="${pageContext.request.contextPath}/mini2/style/member.css" rel="stylesheet">
  
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- navbar------------------------------------------------------- -->
 <c:choose>
   <c:when test="${not empty sessionScope.loginUser}">
