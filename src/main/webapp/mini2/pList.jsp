@@ -100,6 +100,10 @@
 						<div id="aPLink${best.postID}" class="aPSelector">${best.title}</div>
 					</div>
 					<input type="hidden" name="postID" value="${best.postID}">
+					<!-- 페이지넘버  태그 넘기기 -->
+				    <input type="hidden" name="pageNum" value="${map.pageNum}">
+			        <input type="hidden" name="tag" value="${param.tag}">
+			        <!--  -->
 				</form>
 			</div>
 		</c:forEach>
