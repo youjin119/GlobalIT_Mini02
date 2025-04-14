@@ -64,10 +64,13 @@ public class pLikeController extends HttpServlet {
             // 좋아요 추가
             imgLikeDAO.addLike(userId, postID);
         }
-
+        
+        // 좋아요 수를 최신화
+        int likeCount = imgLikeDAO.getLikeCount(postID);
         imgLikeDAO.close(); // DB 연결 닫기
 
-        // 게시글 페이지로 리다이렉트
-        response.sendRedirect("/pView.do?postID=" + postID);
+        // JSON 응답으로 좋아요 상태와 좋아요 수를 보내기
+        response.setContentType("application/json");
+        response.getWriter().write("{\"isLiked\": " + !isLiked + ", \"likeCount\": " + likeCount + "}");     
     }
-	}
+}
