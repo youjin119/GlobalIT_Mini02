@@ -9,7 +9,6 @@ import java.io.IOException;
 
 @WebServlet("/findId.do")
 public class FindIdController extends HttpServlet {
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         

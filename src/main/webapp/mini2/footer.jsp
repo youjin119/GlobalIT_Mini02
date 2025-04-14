@@ -9,7 +9,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
- 
   <!-- stylesheet -->
   <link href="${pageContext.request.contextPath}/mini2/style/headerFooter.css" rel="stylesheet">
 </head>

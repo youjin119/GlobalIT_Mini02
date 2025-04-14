@@ -55,6 +55,8 @@ public class pViewController extends HttpServlet {
 		String pageNum = request.getParameter("pageNum");
 		request.setAttribute("pageNum", pageNum);
 		System.out.println("넘어온 pageNum = " + pageNum);
+		String tag = request.getParameter("tag");
+		request.setAttribute("tag", tag);
 		
 		// 💡 세션에서 loginUser 가져와서 JSP에 넘기기
 		HttpSession session = request.getSession();

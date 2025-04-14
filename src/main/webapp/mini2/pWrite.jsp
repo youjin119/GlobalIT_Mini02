@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td class="label">기사 소개 태그 :</td>
-        <td><input type="text" name="tag" class="input-text medium" value="${pdto.tag}" /></td>
+        <td><input type="text" name="tag" class="input-text medium" value="${pdto.tag}" placeholder="예)#대한민국"/></td>
       </tr>
       <tr>
         <td class="label">국가/지역 :</td>
