@@ -19,6 +19,9 @@ body{margin:0; padding:0; text-align:center;}
 .bordertest > form > div {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+	white-space: nowrap;
+    text-overflow: ellipsis;
 }
   .mainImgs{
   	width: 150px;
