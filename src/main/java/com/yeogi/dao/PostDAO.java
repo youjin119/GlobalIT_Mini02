@@ -275,7 +275,7 @@ public class PostDAO extends DBConnPool{
     
     public void deletePost(int postID, String uploadPath) {
         try {
-        	System.out.println("uploadPath = " + uploadPath);
+			/* System.out.println("uploadPath = " + uploadPath); */
         	
         	// 이미지 파일명 조회
             List<String> imgIds = getImgIdsByPostID(postID);
