@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="/mini2/style/pWrite.css">
 <script src="/mini2/js/pWrite.js"></script>
 </head>
-<body>
+<body class="d-flex-column min-vh-100">
 	<jsp:include page="headerlogout.jsp"></jsp:include>
 
   <h2 class="page-title">✏️기사 작성</h2>
