@@ -106,7 +106,7 @@ public class registerController extends HttpServlet {
 	    HttpSession session = request.getSession();  //  session 꺼내기
 	    if (result == 1) {
 	        session.setAttribute("id", mVo.getId());
-	        request.setAttribute("message", "회원 가입에 성공했습니다.");
+	        request.setAttribute("message", "회원 가입에 성공했습니다. 로그인 해주세요");
 	    } else {
 	        request.setAttribute("message", "회원 가입에 실패했습니다.");
 	    }
