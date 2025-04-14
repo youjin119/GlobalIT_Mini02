@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yeogi.dao.ImglikeDAO;
 import com.yeogi.dao.PostDAO;
 import com.yeogi.dto.PostDTO;
 
@@ -61,6 +62,13 @@ public class pViewController extends HttpServlet {
 		
 		// 게시물(dto) 저장 후 뷰로 포워드
 		request.setAttribute("pdto", pdto);
+		
+		// 💡 좋아요 수 조회해서 JSP에 전달
+		ImglikeDAO ImglikeDAO = new ImglikeDAO();
+		int likeCount = ImglikeDAO.getLikeCount(postID);
+		ImglikeDAO.close(); // DAO에 close() 있으면 호출
+		request.setAttribute("likeCount", likeCount);
+		
 		request.getRequestDispatcher("mini2/pView.jsp").forward(request, response);
 
 		// ------------------------------------------

@@ -129,5 +129,3 @@ public class pEditController extends HttpServlet {
 				response.sendRedirect("/pView.do?postID=" + postID);
 			}
 	}
-
-

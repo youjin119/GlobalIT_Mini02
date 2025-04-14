@@ -1,6 +1,7 @@
 package com.yeogi.dao;
 
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -49,7 +50,7 @@ public class PostDAO extends DBConnPool{
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?";
         
-        System.out.println(query.replaceFirst("\\?", map.get("start").toString())+map.get("end").toString());
+        //System.out.println(query.replaceFirst("\\?", map.get("start").toString())+map.get("end").toString());
         
         try {
             psmt = con.prepareStatement(query);
@@ -64,8 +65,7 @@ public class PostDAO extends DBConnPool{
             	PreparedStatement subPsmt=con.prepareStatement(" select imgid from img where postid = ? and img_index=1 ");
             	subPsmt.setInt(1, rs.getInt("postid"));
             	ResultSet subrs = subPsmt.executeQuery();
-            	//while -> if
-            	if (subrs.next())
+            	while (subrs.next())
             		dto.setContent(subrs.getString("imgid"));
             	
             	
@@ -181,7 +181,6 @@ public class PostDAO extends DBConnPool{
             psmt.setInt(parameterIndex++, (Integer) map.get("start"));
             psmt.setInt(parameterIndex, (Integer) map.get("end"));
             
-            System.out.println(query);
             
             rs = psmt.executeQuery();
             board = new ArrayList<>();
@@ -225,7 +224,7 @@ public class PostDAO extends DBConnPool{
             if (map.containsKey("tag")) {
                 psmt.setString(1, "%" + map.get("tag") + "%");
             }
-            rs = psmt.executeQuery(query);
+            rs = psmt.executeQuery();
             rs.next();
             totalCount = rs.getInt(1);
         } catch (Exception e) {
@@ -255,4 +254,57 @@ public class PostDAO extends DBConnPool{
 
         return result;
     }
+    
+    public List<String> getImgIdsByPostID(int postID) {
+        List<String> imgIds = new ArrayList<>();
+        String sql = "SELECT imgid FROM img WHERE postID = ?";
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, postID);
+            rs = psmt.executeQuery();
+            while (rs.next()) {
+                imgIds.add(rs.getString("imgid"));
+            }
+        } catch (Exception e) {
+            System.out.println("이미지 ID 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        return imgIds;
+    }
+    
+    public void deletePost(int postID, String uploadPath) {
+        try {
+        	System.out.println("uploadPath = " + uploadPath);
+        	
+        	// 이미지 파일명 조회
+            List<String> imgIds = getImgIdsByPostID(postID);
+
+	            // 이미지 파일 삭제
+	            for (String imgId : imgIds) {
+	                File file = new File(uploadPath + File.separator + imgId);
+	                if (file.exists()) {
+	                    file.delete();
+	                }
+	            }
+	        	
+            // 1. 이미지 삭제 (postID에 해당하는 모든 이미지 삭제)
+            String deleteImagesSQL = "DELETE FROM img WHERE postID = ?";
+            psmt = con.prepareStatement(deleteImagesSQL);
+            psmt.setInt(1, postID);
+            psmt.executeUpdate();
+
+            // 2. 게시글 삭제
+            String deletePostSQL = "DELETE FROM post WHERE postID = ?";
+            psmt = con.prepareStatement(deletePostSQL);
+            psmt.setInt(1, postID);
+            psmt.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            System.out.println("게시글 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+    }
+    
 }

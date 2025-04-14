@@ -39,7 +39,7 @@ public class pListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 // DAO 생성
 	       PostDAO dao = new PostDAO();
-
+	       System.out.println("\n pList 서브릿 호출됨");
 	        // 뷰에 전달할 매개변수 저장용 맵 생성
 	        Map<String, Object> map = new HashMap<>();
 
@@ -47,8 +47,11 @@ public class pListController extends HttpServlet {
 	        String tag = req.getParameter("tag");
 	        if (tag != null && !tag.equals("#전체")) {
 	            map.put("tag", tag);
+	            System.out.print("태그 있는 로직 : ");
+	            System.out.println(tag!=null?tag:"null");
 	            
-	            int totalCount = dao.selectCount(map);  // 게시물 개수
+	            
+	            int totalCount = dao.selectTagCount(map);  // 게시물 개수
 
 
 		        int pageSize = 10; //한 페이지에 출력할 글의 갯수
@@ -57,6 +60,8 @@ public class pListController extends HttpServlet {
 		        // 현재 페이지 확인
 		        int pageNum = 1;  // 기본값
 		        String pageTemp = req.getParameter("pageNum");
+		        
+		        
 		        if (pageTemp != null && !pageTemp.equals(""))
 		            pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
 
@@ -82,10 +87,13 @@ public class pListController extends HttpServlet {
 		        }
 		        dao.close(); // DB 연결 닫기
 
+		        
+	        	String tagValue = tag != null && !tag.equals("") ? tag : "#전체";
+	        	System.out.println("페이징 전달 태그 값 : "+tagValue);
 		        // 뷰에 전달할 매개변수 추가
 		        String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-		                blockPage, pageNum, "../pList.do");  // 바로가기 영역 HTML 문자열
-		        System.out.println(pagingImg);
+		                blockPage, pageNum, "../pList.do",tagValue);  // 바로가기 영역 HTML 문자열
+		        //System.out.println(pagingImg);
 		        map.put("pagingImg", pagingImg);
 		        map.put("totalCount", totalCount);
 		        map.put("pageSize", pageSize);
@@ -101,7 +109,8 @@ public class pListController extends HttpServlet {
 	        }
 	        else {	        	
 	        	int totalCount = dao.selectCount(map);  // 게시물 개수
-	        	
+	        	System.out.print("태그 없는 로직 : ");
+	        	System.out.println(tag==null?true:tag); //태그가 null이면 true, 이외 값이면 false
 	        	
 	        	int pageSize = 10; //한 페이지에 출력할 글의 갯수
 	        	int blockPage = 5; //페이지 번호의 갯수 1,2,3,4,5
@@ -134,10 +143,12 @@ public class pListController extends HttpServlet {
 	        	}
 	        	dao.close(); // DB 연결 닫기
 	        	
+	        	String tagValue = tag != null && !tag.equals("") ? tag : "#전체";
+	        	System.out.println("페이징 전달 태그 값 : "+tagValue);
 	        	// 뷰에 전달할 매개변수 추가
 	        	String pagingImg = Pageing.pagingStr(totalCount, pageSize,
-	        			blockPage, pageNum, "../pList.do");  // 바로가기 영역 HTML 문자열
-	        	System.out.println(pagingImg);
+	        			blockPage, pageNum, "../pList.do",tagValue);  // 바로가기 영역 HTML 문자열
+	        	//System.out.println(pagingImg);
 	        	map.put("pagingImg", pagingImg);
 	        	map.put("totalCount", totalCount);
 	        	map.put("pageSize", pageSize);
@@ -154,6 +165,7 @@ public class pListController extends HttpServlet {
 	        }
 	}
 
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

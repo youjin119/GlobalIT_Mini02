@@ -1,0 +1,146 @@
+body {
+	font-family: sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+/* 헤더와 겹치지 않도록 여백 */
+.main_content {
+	padding-top: 100px;
+	padding-bottom:20px;
+}
+
+.post-container {
+	max-width: 800px;
+	margin: auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 10px;
+	text-align:center;
+}
+
+.meta {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	font-size: 14px;
+	color: #555;
+}
+
+.meta .divider {
+	width: 1px;
+	height: 14px;
+	background-color: #aaa;
+}
+
+.icons {
+	margin: 10px 0;
+}
+
+.top-icons {
+    margin-bottom: -34px;
+}
+
+.bottom-icons {
+    text-align: center;
+}
+
+.bottom-icons span {
+	margin: 0 10px;
+	font-size: 1.2em;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.bottom-icons span a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 10px;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+}
+
+.bottom-icons span a:hover {
+	background-color: #f0f0f0;
+}
+
+.like-form {
+    display: inline;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+a.like-btn {
+    text-decoration: none;
+}
+
+.like-btn.liked {
+    color: red; /* 좋아요 눌렀을 때 붉은 하트 */
+}
+
+.like-btn:hover {
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+.tag {
+	text-align: right;
+	color: #555;
+	margin-top: 10px;
+}
+
+.tag .badge {
+	margin-left: 5px;
+}
+
+.content {
+	text-align: center;
+	margin-top: 30px;
+	line-height: 1.6em;
+	word-break: break-word;
+	white-space: pre-line;
+}
+
+.content img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 20px auto;
+	border-radius: 10px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.writer {
+	margin-top: 50px;
+	text-align: left;
+	font-style: italic;
+	font-size: 0.95em;
+	color: #444;
+}
+
+.postdate {
+	text-align: left;
+	color: #666;
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+

@@ -77,6 +77,30 @@ public class deleteImageController extends HttpServlet {
 						FileUtil.deleteFile(request, "/uploads", filename.trim());
 					}
 				}
+			}else if (contentType != null && contentType.contains("text/plain")) {
+				// ✅ sendBeacon()에서 보내는 JSON 문자열 처리
+				StringBuilder sb = new StringBuilder();
+				String line;
+				BufferedReader reader = request.getReader();
+				while ((line = reader.readLine()) != null) {
+					sb.append(line);
+				}
+
+				String body = sb.toString();
+				System.out.println("삭제 대상 파일명 (plain): " + body);
+
+				try {
+					JSONObject json = new JSONObject(body);
+					JSONArray imageArray = json.getJSONArray("images");
+
+					for (int i = 0; i < imageArray.length(); i++) {
+						String filename = imageArray.getString(i);
+						System.out.println("삭제 대상 파일명 (JSON in text/plain): " + filename);
+						FileUtil.deleteFile(request, "/uploads", filename);
+					}
+				} catch (Exception e) {
+					System.out.println("JSON 파싱 실패: " + e.getMessage());
+				}
 			} else {
 				System.out.println("지원되지 않는 Content-Type 형식입니다.");
 			}
@@ -89,4 +113,3 @@ public class deleteImageController extends HttpServlet {
 		}
 	}
 	}
-

@@ -39,7 +39,7 @@ form{
   max-width:500px;
   margin: 100px auto;
 }
-img{ width: 300px;
+.loginReImg{ width: 300px;
   margin: 30px auto; display: block;}
 .input-container {
   display: -ms-flexbox; /* IE10 */

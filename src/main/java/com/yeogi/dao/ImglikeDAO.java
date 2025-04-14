@@ -1,3 +1,4 @@
+
 package com.yeogi.dao;
 
 import java.util.ArrayList;
@@ -94,4 +95,65 @@ public class ImglikeDAO extends DBConnPool  {
 	    }
 	    return imgids;
 	}
+	
+	  // 사용자가 해당 게시글에 좋아요를 눌렀는지 확인
+    public boolean isLiked(String userId, int postID) {
+        String sql = "SELECT COUNT(*) FROM post_like WHERE id = ? AND postID = ?";
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, userId);
+            psmt.setInt(2, postID);
+            rs = psmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // 좋아요 추가
+    public int addLike(String userId, int postID) {
+        String sql = "INSERT INTO post_like (id, postID) VALUES (?, ?)";
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, userId);
+            psmt.setInt(2, postID);
+            return psmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    // 좋아요 취소
+    public int removeLike(String userId, int postID) {
+        String sql = "DELETE FROM post_like WHERE id = ? AND postID = ?";
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, userId);
+            psmt.setInt(2, postID);
+            return psmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    // 특정 게시글의 좋아요 수 반환
+    public int getLikeCount(int postID) {
+        String sql = "SELECT COUNT(*) FROM post_like WHERE postID = ?";
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, postID);
+            rs = psmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Arrays"%>
+<%@ page import="java.net.URLEncoder" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,25 +9,44 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+
+
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=1.2">
 
 </head>
 <body>
-<!-- 수정사항 -->
-<c:set var="pageNum" value="${param.pageNum}" />
-<!-- 수정사항 -->
- <h1 id="toIndexLink">기사 목록 띄우기</h1>
- 	<div class="tagsContainer">
-		<div class="tagSelector tagSelected cursorSetPointer">#전체</div>
-		<div class="tagSelector cursorSetPointer">#여행</div>
-		<div class="tagSelector cursorSetPointer">#아시아</div>
-		<div class="tagSelector cursorSetPointer">#아프리카</div>
-		<div class="tagSelector cursorSetPointer">#아메리카</div> 	
-		<div class="tagSelector cursorSetPointer">#오세아니아</div> 	
- 	</div>
+<!-- navbar------------------------------------------------------- -->
+	<c:choose>
+	  <c:when test="${not empty sessionScope.loginUser}">
+	    <!--login 성공하면 logout navbar 나옴  -->
+	    <jsp:include page="headerlogout.jsp"></jsp:include>
+	  </c:when>
+	  <c:otherwise>
+	    <!--login 하지 않을 경우 login navbar 나옴  -->
+	    <jsp:include page="headerlogin.jsp"></jsp:include>
+	  </c:otherwise>
+	</c:choose>
+	<!-- navbar end-->
+
+	<div class="tagsContainer">
+		<ul class="breadcrumb">    
+		<%
+			String tagUrl = "pList.do?pageNum=1&tag=";
+			ArrayList<String> tags = 
+					new ArrayList<>(Arrays.asList("#전체","#유럽","#아시아","#아프리카","#아메리카","#오세아니아"));
+		%>    
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(0), "UTF-8") %>">#전체</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(1), "UTF-8") %>">#유럽</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(2), "UTF-8") %>">#아시아</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(3), "UTF-8") %>">#아프리카</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(4), "UTF-8") %>">#아메리카</a></li>
+           <li><a href="<%= tagUrl + URLEncoder.encode(tags.get(5), "UTF-8") %>">#오세아니아</a></li>
+           <li><a href="pList.do?pageNum=1&tag=%23여행">#여행</a></li>
+		</ul>
+	</div>
  <br>
- <form method="post" action="/pList.do">
+ <form method="post" action="/pList.do" class="pListForm">
  	<!-- <button type="submit" id="plusButton" name="click" value="insert">insert</button> -->
  	<button type="submit" id="updateButton" name="click" value="update">새로고침</button>
  	<button type="reset" id="delButton" name="click" value="delete">test</button>
@@ -32,45 +55,44 @@
  <div class="boardListsContainer">
 	 <c:choose>
 		 <c:when test="${ empty boardLists }">
-		 	등록된 게시물이 없습니다^^*
+		 	🧭🗺 앗, 아직 아무도 다녀가지 않았나봐요~ 🧭🗺
 		 </c:when>
-		 
 		 <c:otherwise>
 			 <c:forEach items="${boardLists }" var="post">
 			    <div class="bordertest">
-			    	<form method="get" action="/pView.do" id="viewForm${post.postID}">
+			    	<form method="get" action="/pView.do" id="viewForm${post.postID}" class="pListForm">
 						<c:choose>
 						    <c:when test="${post.content == null}">
-						        <img src="/mini2/imgs/default.png" alt="로드실패" class="mainImgs">
+						        <img src="/mini2/imgs/default.png" alt="기본 이미지" class="mainImgs">
 						    </c:when>
 						    <c:otherwise>
-						        <img src="/uploads/${post.content}" alt="로드실패" class="mainImgs">
+						        <img src="/uploads/${post.content}" alt="${post.title }" class="mainImgs">
 						    </c:otherwise>
 						</c:choose>
-						
-						 <!--  <p>대표 이미지: ${post.content}</p> -->
 				        <div>
 				            <h2 id="viewLink${post.postID}" class="viewSelector">${post.title}</h2>
 				            <p>${post.country}</p>
-				            <p>${post.tag}</p>
+				            <p>${post.tag} ${post.postID }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
-				        <!-- 수정사항 -->
-				        <input type="hidden" name="pageNum" value="${pageNum}">
-				        <!-- 수정사항 -->
+				        <!-- 페이지넘버  태그 넘기기 -->
+				        <input type="hidden" name="pageNum" value="${map.pageNum}">
+				        <input type="hidden" name="tag" value="${param.tag}">
+				        <!--  -->
 			    	</form>
 			    </div>  
 			 </c:forEach>
 		 </c:otherwise>
 	 </c:choose>
-	<div>
-		페이징 처리<br>
-		${ map.pagingImg }
+	<div class="pagingContainer">
+		<div>
+			${ map.pagingImg }
+		</div>
 	</div>
  </div> <!-- 리스트 불러옴 -->
 	
 	<div id="absolutePanel">
-		테스트
+		<div>New Recommend❣</div>
 	 	<c:forEach items="${panelLists }" var="best">
 			<div class="aP">
 				<c:choose>
@@ -81,12 +103,18 @@
 				        <img src="/uploads/${best.content}" alt="로드실패" class="panelImg">
 				    </c:otherwise>
 				</c:choose>
-				<br>
-				${best.title}<br>
+				<div class="apText">
+					<div>${best.title}</div>
+					<div>${best.tag}</div>
+				</div>
 			</div>
 		</c:forEach>
 	</div>
 
-	<script src="../mini2/js/pList.js?v=1.2"></script>
+	<script>
+	const selectedTag = "<%= request.getParameter("tag") != null 
+		&& !request.getParameter("tag").isEmpty() ? request.getParameter("tag") : "#전체" %>";
+    </script>
+	<script src="/mini2/js/pList.js?v=1.0"></script>
 </body>
 </html>
