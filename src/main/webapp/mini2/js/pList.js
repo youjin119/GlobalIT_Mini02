@@ -27,7 +27,7 @@ function changeTagColor(selectedTag) {
 // 보드 이벤트 리스너 등록 함수
 function viewLinksEventListeners() {
     const viewLinks = document.querySelectorAll(".viewSelector");
-	console.log(viewLinks);
+	//console.log(viewLinks);
     viewLinks.forEach(function(viewLink) {
         viewLink.addEventListener('click', function(event) {
             const idx = this.id.replace("viewLink", '');
@@ -39,7 +39,7 @@ function viewLinksEventListeners() {
 // 사이드 패널 이벤트 리스너
 function sidePanelLinksEventListeners() {
     const sPLinks = document.querySelectorAll(".aPSelector");
-	console.log(sPLinks);
+	//console.log(sPLinks);
     sPLinks.forEach(function(sPLink) {
         sPLink.addEventListener('click', function(event) {
             const idx = this.id.replace("aPLink", '');
