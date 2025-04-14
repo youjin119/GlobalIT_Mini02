@@ -5,10 +5,10 @@ body{margin:0; padding:0; text-align:center;}
 .bordertest{
 	display: flex;
 	flex-direction: row;
-	border: 1px solid gray;
+	border: 1px solid #f2f2f2;
 	/* margin-left: 20vh;
 	margin-right: 20vh; */
-	margin: 40px 20vh;
+	margin: 10px 20vh;
 }
 .bordertest > form { /* 수정: form 태그에 스타일 적용 */
     display: flex;
