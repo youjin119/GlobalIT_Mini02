@@ -71,6 +71,7 @@
 				            <p>${post.tag} ${post.postID }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
+				        
 				        <input type="hidden" name="pageNum" value="${map.pageNum}">
 			        	<input type="hidden" name="tag" value="${param.tag}">
 			    	</form>
