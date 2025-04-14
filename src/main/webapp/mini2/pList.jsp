@@ -12,7 +12,7 @@
 
 
 	<title>여기저기</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v=6.0.2">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=6.0.4">
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -71,6 +71,7 @@
 				            <p>${post.tag} ${post.postID }</p>
 				        </div>
 				        <input type="hidden" name="postID" value="${post.postID}">
+				        
 				        <input type="hidden" name="pageNum" value="${map.pageNum}">
 			        	<input type="hidden" name="tag" value="${param.tag}">
 			    	</form>
