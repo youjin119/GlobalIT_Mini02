@@ -12,7 +12,7 @@
 
 
 	<title>work</title>
-	<link rel="stylesheet" href="/mini2/style/pList.css?v=5.2">
+	<link rel="stylesheet" href="/mini2/style/pList.css?v=5.3">
 
 </head>
 <body>
