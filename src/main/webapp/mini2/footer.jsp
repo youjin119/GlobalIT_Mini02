@@ -23,7 +23,7 @@
 </head>
 <body>
 
-  <footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
+  <footer class="footer mt-auto py-3 bg-light border-top">
     <div class="container text-center text-muted small d-flex flex-wrap  gap-2 footer-links">      
       <span><strong>&copy; YEOGI Corp.</strong></span>
       <span class="divider">|</span>
