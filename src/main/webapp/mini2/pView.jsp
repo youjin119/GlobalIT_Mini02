@@ -54,15 +54,7 @@
 
                     <!-- 좋아요 수는 항상 표시 -->
                     <span>
-                        <c:choose>
-                            <c:when test="${not empty sessionScope[likeCountKey]}">
-                                ${sessionScope[likeCountKey]}
-                            </c:when>
-                            <c:otherwise>
-                                0
-                            </c:otherwise>
-                        </c:choose>
-                    </span>
+                        ${likeCount}
                 </span>
                 <span>👁️ ${pdto.vcount}</span>
             </div>

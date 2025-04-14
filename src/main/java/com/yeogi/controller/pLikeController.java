@@ -54,11 +54,7 @@ public class pLikeController extends HttpServlet {
         // 좋아요 상태 확인 및 좋아요 개수 가져오기
         ImglikeDAO imgLikeDAO = new ImglikeDAO();
         boolean isLiked = imgLikeDAO.isLiked(userId, postID); // 사용자가 이미 좋아요를 눌렀는지 확인
-        int likeCount = imgLikeDAO.getLikeCount(postID); // 게시글에 대한 좋아요 개수 가져오기
         
-        // 좋아요 상태를 세션에 저장
-        request.getSession().setAttribute("isLiked_" + postID, !isLiked); // 세션에 반영 (상태 반대로 저장)
-        request.getSession().setAttribute("likeCount_" + postID, likeCount); // 좋아요 개수도 세션에 저장
 
         // 좋아요 취소 또는 추가 처리
         if (isLiked) {
