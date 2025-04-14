@@ -22,7 +22,7 @@
   <script src="/mini2/js/pEdit.js"></script>
 </head>
 
-<body>
+<body class="d-flex-column min-vh-100">
 <jsp:include page="headerlogout.jsp"></jsp:include>
 
   <h2 class="page-title">🛠️기사 수정</h2>

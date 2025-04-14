@@ -3,12 +3,16 @@ body {
 	text-align: center;
 	margin: 0;
 	padding: 0;
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* 헤더와 겹치지 않도록 여백 */
 .main_content {
 	padding-top: 100px;
 	padding-bottom:20px;
+	flex: 1;
 }
 
 .post-container {
