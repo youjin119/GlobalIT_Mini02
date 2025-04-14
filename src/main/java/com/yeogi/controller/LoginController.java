@@ -54,37 +54,39 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String url = "/mini2/login.jsp";
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		
-		MemberDAO mDao = MemberDAO.getInstance();
-		int result = mDao.userCheck(id, pw);
-		
-		if (result == 1) { //id, pass일치할 때
-			MemberDTO mVo = mDao.getMember(id);			
-			HttpSession session = request.getSession();			
-			session.setAttribute("loginUser",mVo);
-			session.setAttribute("admin",mDao.isAdmin(id)?1:0);
-			
-			
-			url = "main.do";
-			response.sendRedirect(url);//주소변경
-			
-		} else if (result == 0) { //pass 일치하지 않을때
-			request.setAttribute("message", "비밀번호가 맞지 않습니다.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-		} else if (result == -1) { //id 존재하지 않을때
-			request.setAttribute("message", "존재하지 않는 회원입니다.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-		}
-		
-//dieu chinh
-	}
-		
-	
+	    String url = "/mini2/login.jsp";
+	    String id = request.getParameter("id");
+	    String pw = request.getParameter("pw");
 
+	    MemberDAO mDao = new MemberDAO();  // Daotofh 생성
+	    int result = -1;
+
+	    try {
+	        result = mDao.userCheck(id, pw);
+
+	        if (result == 1) { // ID, Password 맞음
+	            MemberDTO mVo = mDao.getMember(id);
+	            HttpSession session = request.getSession();
+	            session.setAttribute("loginUser", mVo);
+	            session.setAttribute("admin", mDao.isAdmin(id) ? 1 : 0);
+
+	            url = "main.do";
+	            response.sendRedirect(url);  // 주소 변경
+	            return;  // ❗중복 forward 방지
+	        } else if (result == 0) { // 비밀번호 불일치
+	            request.setAttribute("message", "비밀번호가 맞지 않습니다.");
+	        } else if (result == -1) { // ID 존재하지 않음
+	            request.setAttribute("message", "존재하지 않는 회원입니다.");
+	        }
+
+	        // 실패 시 login.jsp로 포워드
+	        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+	        dispatcher.forward(request, response);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        mDao.close();  // DB 자원 반납
+	    }
+	}
 }
