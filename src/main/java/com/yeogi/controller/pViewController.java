@@ -43,8 +43,10 @@ public class pViewController extends HttpServlet {
 		int postID = Integer.parseInt(request.getParameter("postID"));
 		pdao.updateVcount(postID);  // 조회수 1 증가
 		PostDTO pdto = pdao.selectView(postID);
-		System.out.println("받아온 게시물 제목: " + pdto.getTitle());
-		System.out.println("받아온 게시물 내용: " + pdto.getContent());
+		/*
+		 * System.out.println("받아온 게시물 제목: " + pdto.getTitle());
+		 * System.out.println("받아온 게시물 내용: " + pdto.getContent());
+		 */
 		pdao.close();
 
 		// 줄바꿈 처리
@@ -54,7 +56,7 @@ public class pViewController extends HttpServlet {
 		// 💡 페이지 번호 받아서 저장
 		String pageNum = request.getParameter("pageNum");
 		request.setAttribute("pageNum", pageNum);
-		System.out.println("넘어온 pageNum = " + pageNum);
+		/* System.out.println("넘어온 pageNum = " + pageNum); */
 		String tag = request.getParameter("tag");
 		request.setAttribute("tag", tag);
 		

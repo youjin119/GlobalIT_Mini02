@@ -49,19 +49,19 @@ public class pWriteController extends HttpServlet {
 		java.util.Enumeration<String> params = request.getParameterNames();
 		while (params.hasMoreElements()) {
 		    String paramName = params.nextElement();
-		    System.out.println("Parameter Name: " + paramName + ", Value: " + request.getParameter(paramName));
-		}
+		   /* System.out.println("Parameter Name: " + paramName + ", Value: " + request.getParameter(paramName));
+		}*/
 		
 		String title = request.getParameter("title");
         String tag = request.getParameter("tag");
         String country = request.getParameter("country");
         String content = request.getParameter("content");
 
-        System.out.println("title = " + title);  // 확인용
+/*        System.out.println("title = " + title);  // 확인용
         System.out.println("tag = " + tag);      // 확인용
         System.out.println("country = " + country);  // 확인용
         System.out.println("content = " + content);  // 확인용
-        
+*/        
         HttpSession session = request.getSession();
         MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
 
@@ -104,5 +104,5 @@ public class pWriteController extends HttpServlet {
 
        pdao.close();
     }
-
+	}
 }

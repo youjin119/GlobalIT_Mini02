@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.value = '';
 
     } catch (err) {
-      console.error("이미지 업로드 에러:", err);
+      /*console.error("이미지 업로드 에러:", err);*/
       alert("이미지 업로드 중 오류가 발생했습니다.");
     }
   });
