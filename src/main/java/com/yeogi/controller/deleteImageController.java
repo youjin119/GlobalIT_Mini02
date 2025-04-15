@@ -43,8 +43,8 @@ public class deleteImageController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String contentType = request.getContentType();
-		//System.out.println("🔥 deleteImageController POST 요청 도착");
-		//System.out.println("Content-Type: " + contentType);
+		System.out.println("🔥 deleteImageController POST 요청 도착");
+		System.out.println("Content-Type: " + contentType);
 
 		try {
 			if (contentType != null && contentType.contains("application/json")) {
@@ -61,7 +61,7 @@ public class deleteImageController extends HttpServlet {
 
 				for (int i = 0; i < imageArray.length(); i++) {
 					String filename = imageArray.getString(i);
-					//System.out.println("삭제 대상 파일명 (JSON): " + filename);
+					System.out.println("삭제 대상 파일명 (JSON): " + filename);
 					FileUtil.deleteFile(request, "/uploads", filename);
 				}
 
@@ -73,7 +73,7 @@ public class deleteImageController extends HttpServlet {
 					String[] filenames = decoded.split(",");
 
 					for (String filename : filenames) {
-						//System.out.println("삭제 대상 파일명 (form): " + filename);
+						System.out.println("삭제 대상 파일명 (form): " + filename);
 						FileUtil.deleteFile(request, "/uploads", filename.trim());
 					}
 				}
@@ -87,7 +87,7 @@ public class deleteImageController extends HttpServlet {
 				}
 
 				String body = sb.toString();
-				//System.out.println("삭제 대상 파일명 (plain): " + body);
+				System.out.println("삭제 대상 파일명 (plain): " + body);
 
 				try {
 					JSONObject json = new JSONObject(body);
@@ -95,14 +95,14 @@ public class deleteImageController extends HttpServlet {
 
 					for (int i = 0; i < imageArray.length(); i++) {
 						String filename = imageArray.getString(i);
-						//System.out.println("삭제 대상 파일명 (JSON in text/plain): " + filename);
+						System.out.println("삭제 대상 파일명 (JSON in text/plain): " + filename);
 						FileUtil.deleteFile(request, "/uploads", filename);
 					}
 				} catch (Exception e) {
-					//System.out.println("JSON 파싱 실패: " + e.getMessage());
+					System.out.println("JSON 파싱 실패: " + e.getMessage());
 				}
 			} else {
-				//System.out.println("지원되지 않는 Content-Type 형식입니다.");
+				System.out.println("지원되지 않는 Content-Type 형식입니다.");
 			}
 
 			response.setStatus(HttpServletResponse.SC_OK);

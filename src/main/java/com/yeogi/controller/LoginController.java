@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
 	    String url = "/mini2/login.jsp";
 	    String id = request.getParameter("id");
 	    String pw = request.getParameter("pw");
-	    String redirectURL = request.getParameter("redirectURL");
+
 	    MemberDAO mDao = new MemberDAO();  // Daotofh 생성
 	    int result = -1;
 
@@ -67,19 +67,15 @@ public class LoginController extends HttpServlet {
 	            session.setAttribute("loginUser", mVo);
 	            session.setAttribute("admin", mDao.isAdmin(id) ? 1 : 0);
 
-	            if (redirectURL != null && !redirectURL.isEmpty()) {
-	                response.sendRedirect(redirectURL);
-	            } else {
-	                url = "main.do";
-	                response.sendRedirect(url);
-	            }
+	            url = "main.do";
+	            response.sendRedirect(url);  // 주소 변경
 	            return;  // ❗중복 forward 방지
 	        } else if (result == 0) { // 비밀번호 불일치
 	            request.setAttribute("message", "비밀번호가 맞지 않습니다.");
 	        } else if (result == -1) { // ID 존재하지 않음
 	            request.setAttribute("message", "존재하지 않는 회원입니다.");
 	        }
-	        
+
 	        // 실패 시 login.jsp로 포워드
 	        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 	        dispatcher.forward(request, response);

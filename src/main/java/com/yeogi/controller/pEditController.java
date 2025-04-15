@@ -55,7 +55,7 @@ public class pEditController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		 System.out.println("🔥 doPost 진입 확인"); // 이거 먼저 찍어봐
+		 System.out.println("🔥 doPost 진입 확인"); // 이거 먼저 찍어봐
 		 request.setCharacterEncoding("UTF-8");
 		// 1. 게시글 수정
 				int postID = Integer.parseInt(request.getParameter("postID"));
@@ -64,7 +64,7 @@ public class pEditController extends HttpServlet {
 				String country = request.getParameter("country");
 				String content = request.getParameter("content");
 				
-				// System.out.println("📄 수정된 게시글 내용: " + content);  // 디버깅용 로깅 추가
+				 System.out.println("📄 수정된 게시글 내용: " + content);  // 디버깅용 로깅 추가
 				
 				PostDTO pdto = new PostDTO();
 				pdto.setPostID(postID);
@@ -85,17 +85,17 @@ public class pEditController extends HttpServlet {
 
 				    // ✅ 기존 이미지 파일명 가져오기
 				    List<String> oldImgList = idao.getImgidsByPostID(postID);
-				  //  System.out.println("🧾 기존 이미지 파일 수: " + oldImgList.size());
+				    System.out.println("🧾 기존 이미지 파일 수: " + oldImgList.size());
 
 				    // ✅ 서버에서 이미지 파일 삭제
 				    for (String imgid : oldImgList) {
 				        FileUtil.deleteFile(request, "/upload", imgid);  
 				    }
-				    //System.out.println("🧹 서버에서 이미지 파일 삭제 완료");
+				    System.out.println("🧹 서버에서 이미지 파일 삭제 완료");
 
 				    // ✅ DB에서 이미지 삭제
 				    int deleted = idao.deleteImagesByPostID(postID);
-				    //System.out.println("🗑️ 삭제된 이미지 수: " + deleted);
+				    System.out.println("🗑️ 삭제된 이미지 수: " + deleted);
 
 				    // 새 이미지 등록
 				    String[] imgids = request.getParameterValues("imgid");
@@ -103,9 +103,9 @@ public class pEditController extends HttpServlet {
 				        for (int i = 0; i < imgids.length; i++) {
 				            idao.insertImage(imgids[i], i + 1, postID);
 				        }
-				      //  System.out.println("🖼️ 새 이미지 " + imgids.length + "개 등록 완료");
+				        System.out.println("🖼️ 새 이미지 " + imgids.length + "개 등록 완료");
 				    } else {
-				        //System.out.println("📭 등록할 새 이미지가 없습니다");
+				        System.out.println("📭 등록할 새 이미지가 없습니다");
 				    }
 
 				    // ⭐ 커밋!
@@ -114,7 +114,7 @@ public class pEditController extends HttpServlet {
 
 				} catch (Exception e) {
 				    try {
-				        //System.out.println("⚠️ 예외 발생, 롤백 수행 중...");
+				        System.out.println("⚠️ 예외 발생, 롤백 수행 중...");
 				        pdao.con.rollback();
 				        idao.con.rollback();
 				    } catch (Exception rollbackEx) {
