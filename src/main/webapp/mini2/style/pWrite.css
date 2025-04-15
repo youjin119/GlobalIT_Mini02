@@ -1,26 +1,27 @@
+/* 전체 페이지 배경색 */
 body {
   background-color: #f5f5f5;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
-
+/* 제목 영역 디자인 */
 .page-title {
   border: 1px solid #ddd;
   width: 55%;
   height: 150px;
   margin: 50px auto;
   margin-top: 100px;
-  background-color: #4CAF50; 
+  background-color: #4CAF50; /* 녹색 배경 */
   color: white;
   font-size: 32px;
   line-height: 150px;
   text-align: center;
-  border-radius: 8px; 
+  border-radius: 8px; /* 둥근 모서리 */
   cursor: default;
 }
 
-
+/* 테이블 전체 */
 .edit-table {
   margin: 0 auto;
   margin-top: 40px;
@@ -29,7 +30,7 @@ body {
   border-spacing: 10px;
 }
 
-
+/* 첫 번째 열 (레이블) */
 .label {
   text-align: right;
   width: 180px;
@@ -38,27 +39,27 @@ body {
   color: #333;
   padding: 15px;
   vertical-align: top;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0; /* 배경색 추가 */
   border-radius: 5px;
 }
 
-
+/* 입력창 스타일 */
 .input-text {
   height: 35px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 100%; 
+  width: 100%; /* 가로폭 100% */
   margin-bottom: 15px;
 }
 
 .input-text:focus {
-  border-color: #78C8BA; 
+  border-color: #78C8BA; /* 포커스 시 강조 색상 */
   outline: none;
 }
 
-
+/* 입력창 사이즈 지정 */
 .input-text.large {
   width: 50%;
   margin-top: 12px;
@@ -69,7 +70,7 @@ body {
   margin-top: 12px;
 }
 
-
+/* 본문 에디터 영역 */
 #editor {
   width: 90%;
   min-height: 300px;
@@ -90,21 +91,21 @@ body {
   background-color: #fefefe;
 }
 
-
+/* 이미지 삽입 시 적용되는 스타일 */
 .inserted-image {
   max-width: 100%;
   height: auto;
   display: block;
   margin: 10px auto;
   clear: both;
-  border-radius: 8px; 
+  border-radius: 8px; /* 둥근 모서리 */
 }
 
 #imgInput {
 	display:none;
 }
 
-
+/* 이미지 추가/삭제 버튼 */
 .image-buttons button {
   background-color: #4CAF50;
   color: white;
@@ -117,10 +118,10 @@ body {
 }
 
 .image-buttons button:hover {
-  background-color: #45a049; 
+  background-color: #45a049; /* 마우스 오버 시 색상 */
 }
 
-
+/* 제출 버튼 위치 */
 .submit-row {
   text-align: center;
   padding-top: 20px;
@@ -137,5 +138,5 @@ body {
 }
 
 .submit-row button:hover {
-  background-color: #007B9A; 
+  background-color: #007B9A; /* 마우스 오버 시 색상 */
 }
