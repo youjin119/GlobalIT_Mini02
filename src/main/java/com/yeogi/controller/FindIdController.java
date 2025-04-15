@@ -17,14 +17,14 @@ public class FindIdController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         System.out.println(phonenum);
 
-        MemberDAO dao = new MemberDAO();  // ✅ không dùng getInstance()
+        MemberDAO dao = new MemberDAO();  
         String foundId = null;
 
         try {
             foundId = dao.findIdByPhone(phonenum);
             System.out.println(foundId);
         } finally {
-            dao.close();  // ✅ luôn đóng sau khi xong
+            dao.close();  // DB 지원 반납
         }
 
         response.setContentType("application/json;charset=UTF-8");
