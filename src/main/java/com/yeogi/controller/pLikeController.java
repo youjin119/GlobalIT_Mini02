@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import com.yeogi.dao.ImglikeDAO;
 import com.yeogi.dto.MemberDTO;
@@ -40,37 +43,43 @@ public class pLikeController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 로그인된 사용자 확인
-        MemberDTO loginUser = (MemberDTO) request.getSession().getAttribute("loginUser");
-        if (loginUser == null) {
-            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-            response.sendRedirect("/login.do?redirectURL=" + request.getRequestURL());
-            return;
-        }
+		 HttpSession session = request.getSession();
+	        MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+	        
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        
+	        int postID = Integer.parseInt(request.getParameter("postID"));
 
-        String userId = loginUser.getId(); // 로그인된 사용자의 ID 가져오기
-        int postID = Integer.parseInt(request.getParameter("postID")); // 좋아요를 누를 게시글 ID
+	        JSONObject json = new JSONObject();
 
-        // 좋아요 상태 확인 및 좋아요 개수 가져오기
-        ImglikeDAO imgLikeDAO = new ImglikeDAO();
-        boolean isLiked = imgLikeDAO.isLiked(userId, postID); // 사용자가 이미 좋아요를 눌렀는지 확인
-        
+	        if (loginUser == null) {
+	            // 로그인 안 한 경우 → redirect URL 포함 응답
+	            String redirectURL = "/login.do?redirectURL=/pView.do?postID=" + postID;
+	            json.put("redirect", redirectURL);
+	            response.getWriter().write(json.toString());
+	            return;
+	        }
 
-        // 좋아요 취소 또는 추가 처리
-        if (isLiked) {
-            // 좋아요 취소
-            imgLikeDAO.removeLike(userId, postID);
-        } else {
-            // 좋아요 추가
-            imgLikeDAO.addLike(userId, postID);
-        }
-        
-        // 좋아요 수를 최신화
-        int likeCount = imgLikeDAO.getLikeCount(postID);
-        imgLikeDAO.close(); // DB 연결 닫기
+	        String userId = loginUser.getId();
 
-        // JSON 응답으로 좋아요 상태와 좋아요 수를 보내기
-        response.setContentType("application/json");
-        response.getWriter().write("{\"isLiked\": " + !isLiked + ", \"likeCount\": " + likeCount + "}");     
-    }
+	        ImglikeDAO likeDAO = new ImglikeDAO();
+	        boolean isLiked = likeDAO.isLiked(userId, postID);
+
+	        if (isLiked) {
+	            // 이미 좋아요 눌렀으면 취소
+	            likeDAO.removeLike(userId, postID);
+	            json.put("isLiked", false);
+	        } else {
+	            // 좋아요 추가
+	            likeDAO.addLike(userId, postID);
+	            json.put("isLiked", true);
+	        }
+
+	        int likeCount = likeDAO.getLikeCount(postID);
+	        json.put("likeCount", likeCount);
+
+	        likeDAO.close();
+	        response.getWriter().write(json.toString());
+	}
 }

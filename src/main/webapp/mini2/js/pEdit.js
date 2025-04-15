@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lastInsertedImage = imgTag;
       e.target.value = '';
     } catch (err) {
-      console.error("이미지 업로드 에러:", err);
+      /*console.error("이미지 업로드 에러:", err);*/
       alert("이미지 업로드 중 오류가 발생했습니다.");
     }
   });
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	// 태그 형식 검사: #으로 시작하고 ,로 구분되어야 함
 	const tagValue = form.tag.value.trim();
-	console.log('입력값:', '[' + tagValue + ']');
+	/*console.log('입력값:', '[' + tagValue + ']');*/
 	const tagPattern = /^(#[\w가-힣]+)(,#[\w가-힣]+)*$/;
 
 	if (!tagPattern.test(tagValue)) {
