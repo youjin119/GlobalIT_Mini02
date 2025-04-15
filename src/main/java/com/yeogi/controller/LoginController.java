@@ -46,9 +46,6 @@ public class LoginController extends HttpServlet {
 	}
 		
 
-		
-
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -69,9 +66,14 @@ public class LoginController extends HttpServlet {
 	            HttpSession session = request.getSession();
 	            session.setAttribute("loginUser", mVo);
 	            session.setAttribute("admin", mDao.isAdmin(id) ? 1 : 0);
+	            String redirectURL = request.getParameter("redirectURL");
 
-	            url = "main.do";
-	            response.sendRedirect(url);  // 주소 변경
+	            if (redirectURL != null && !redirectURL.isEmpty()) {
+	                response.sendRedirect(redirectURL);
+	            } else {
+	                url = "main.do";
+	                response.sendRedirect(url);
+	            }
 	            return;  // ❗중복 forward 방지
 	        } else if (result == 0) { // 비밀번호 불일치
 	            request.setAttribute("message", "비밀번호가 맞지 않습니다.");

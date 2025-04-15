@@ -277,6 +277,9 @@ public class PostDAO extends DBConnPool{
         try {
 			/* System.out.println("uploadPath = " + uploadPath); */
         	
+        	
+        	
+        	
         	// 이미지 파일명 조회
             List<String> imgIds = getImgIdsByPostID(postID);
 
@@ -287,7 +290,13 @@ public class PostDAO extends DBConnPool{
 	                    file.delete();
 	                }
 	            }
-	        	
+	         
+	        String postlikeSQL = "DELETE FROM post_like WHERE postID = ?";
+	        psmt = con.prepareStatement(postlikeSQL);
+	        psmt.setInt(1, postID);
+	        psmt.executeUpdate();
+	            
+	            
             // 1. 이미지 삭제 (postID에 해당하는 모든 이미지 삭제)
             String deleteImagesSQL = "DELETE FROM img WHERE postID = ?";
             psmt = con.prepareStatement(deleteImagesSQL);
