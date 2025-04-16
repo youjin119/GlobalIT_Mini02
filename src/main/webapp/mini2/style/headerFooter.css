@@ -59,4 +59,5 @@ html, body {
 /* 상세내용이 navbar 밑에 있는 것 */
 .main_content {
  padding-top: 100px;
+ padding-bottom: 100px;
 }

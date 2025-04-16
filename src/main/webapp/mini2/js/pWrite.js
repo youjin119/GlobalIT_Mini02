@@ -72,7 +72,37 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
-	
+  editor.addEventListener("paste", function (e) {
+        const clipboardData = e.clipboardData || window.clipboardData;
+        const items = clipboardData && clipboardData.items;
+
+        if (!items) return;
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+
+          // 📛 이미지 데이터 직접 붙여넣기 방지
+          if (item.kind === 'file' && item.type.startsWith("image/")) {
+            e.preventDefault();
+            return;
+          }
+
+          // 📛 이미지 포함된 HTML도 차단
+          if (item.kind === 'string' && item.type === 'text/html') {
+            e.preventDefault(); // 먼저 무조건 차단
+            item.getAsString(function (html) {
+              // img 태그 포함된 경우
+              if (html.includes("<img") || html.match(/<img\s[^>]*src=["'][^"']+["']/i)) {
+                // 아무 것도 안 함, 차단됨
+              } else {
+                // 이미지가 아니면 직접 붙여넣기 (text/html 정상처리)
+                document.execCommand("insertHTML", false, html);
+              }
+            });
+            return;
+          }
+        }
+      });
 
 	
   document.getElementById('imgInput').addEventListener('change', async function (e) {
