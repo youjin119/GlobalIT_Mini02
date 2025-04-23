@@ -8,7 +8,7 @@
   <title>여기저기 기사 수정</title>
 
   <!-- 외부 CSS 연결 -->
-  <link rel="stylesheet" href="/mini2/style/pEdit.css">
+  <link rel="stylesheet" href="/mini2/style/pEdit.css?v=1.7">
 
   <!-- 기존 이미지 목록 스크립트 -->
   <script>
@@ -26,7 +26,9 @@
 <jsp:include page="headerlogout.jsp"></jsp:include>
 
   <h2 class="page-title">🛠️기사 수정</h2>
-
+  <div class="hrContainer">
+	<hr>
+  </div>
   <form name="pWriteFrm" method="post" action="/pEdit.do">
     <input type="hidden" name="postID" value="${pdto.postID}" />
 

@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>여기저기 기사 쓰기</title>
- <link rel="stylesheet" href="/mini2/style/pWrite.css">
-<script src="/mini2/js/pWrite.js"></script>
+ <link rel="stylesheet" href="/mini2/style/pWrite.css?">
+<script src="/mini2/js/pWrite.js?"></script>
 </head>
 <body class="d-flex-column min-vh-100">
-	<jsp:include page="headerlogout.jsp"></jsp:include>
+   <jsp:include page="headerlogout.jsp"></jsp:include>
 
   <h2 class="page-title">✏️기사 작성</h2>
+  <div class="hrContainer">
+	<hr>
+  </div>
 
   <form name="pWriteFrm" method="post" action="/pWrite.do">
     <input type="hidden" name="postID" value="${pdto.postID}" />
@@ -35,8 +38,8 @@
           <div id="editor" contenteditable="true">
           </div>
           <input type="hidden" name="content" id="content" />
-			
-		  <div class="image-buttons">
+         
+        <div class="image-buttons">
           <button type="button" id="imgAddBtn">이미지 추가</button>
           <button type="button" id="imgUndoBtn">이미지 취소</button>
           </div>

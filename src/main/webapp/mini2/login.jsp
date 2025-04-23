@@ -18,7 +18,7 @@
  <script src="https://kit.fontawesome.com/e7c9242ec2.js" crossorigin="anonymous"></script>
 
  <!-- stylesheet -->
- <link href="${pageContext.request.contextPath}/mini2/style/member.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/mini2/style/member.css?v=1.1" rel="stylesheet">
 
 </head>
 <body>

@@ -10,6 +10,7 @@
 /* background 이미지 */
 .bg-blur {
   background-image: url("/mini2/imgs/bg.png");
+  filter: hue-rotate(-75deg);
   background-size: cover;
   background-position: center;
   position: fixed;

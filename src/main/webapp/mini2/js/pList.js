@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	changeTagColor(selectedTag);
 });
 
-
-
-
-
 // 태그 글자 색 변경 함수
 function changeTagColor(selectedTag) {
     if (selectedTag) {

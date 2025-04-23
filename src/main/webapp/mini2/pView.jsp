@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>${pdto.title}</title>
-    <link rel="stylesheet" href="/mini2/style/pView.css">
+    <link rel="stylesheet" href="/mini2/style/pView.css?">
     
     
 </head>
